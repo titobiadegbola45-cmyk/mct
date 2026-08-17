@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dad's Travel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif
+}
+
+:root {
+    --green-primary: #007A3D;   /* Main green */
+    --green-dark: #005C2E;      /* Dark green for hover */
+    --green-light: #E8F5E9;     /* Light green background */
+    --white: #FFFFFF;
+    --text-dark: #1A2E1A;
+    --text-gray: #6B7280;
+    --border: #D1E7DD;
+}
+
+body{
+    background: var(--green-light); /* Light green bg */
+    color: var(--text-dark);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px
+}
+
+.box{
+    width:100%;
+    max-width:400px;
+    background: var(--white);
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,122,61,0.1);
+}
+
+h1{
+    font-size:28px;
+    margin-bottom:8px;
+    color: var(--green-dark);
+    text-align: center;
+}
+
+.subtitle{
+    color: var(--text-gray);
+    margin-bottom:25px;
+    font-size:14px;
+    text-align: center;
+}
+
+.input-group{
+    margin-bottom:18px;
+    position: relative; 
+}
+
+.input-group label{
+    display:block;
+    font-size:13px;
+    margin-bottom:8px;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    background: var(--white);
+    border:1px solid var(--border);
+    border-radius:12px;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    border-color: var(--green-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,122,61,0.1);
+}
+
+.input-group input::placeholder {
+    color: #9CA3AF;
+}
+
+.eye{
+    position: absolute;
+    right: 14px;
+    top: 50%; /* center it vertically */
+    transform: translateY(-2px); /* fine tune */
+    margin-top: 10px; /* push it down below the label */
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--green-primary);
+}
+
+
+.forgot{
+    text-align:right;
+    font-size:12px;
+    margin-bottom:20px
+}
+
+.forgot a{
+    color: var(--green-primary);
+    text-decoration:none;
+    font-weight: 600;
+}
+
+.btn{
+    width:100%;
+    padding:16px;
+    background: var(--green-primary); /* Green button */
+    border:none;
+    border-radius:12px;
+    color: var(--white); /* White text */
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.btn:active{
+    background: var(--green-dark); /* Darker on click */
+}
+
+.signup-link{
+    text-align:center;
+    margin-top:20px;
+    font-size:13px;
+    color: var(--text-gray)
+}
+
+.signup-link a{
+    color: var(--green-primary);
+    font-weight:600;
+    text-decoration:none
+}   </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Welcome Back ✈️</h1>
+        <p class="subtitle">Login to book your next trip</p>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label>📧 Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="input-group">
+                <label>🔒 Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                  <span class="eye" onclick="togglePassword()">👁️</span>
+            </div>
+            <p class="forgot"><a href="#">Forgot Password?</a></p>
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <script>
+
+          function togglePassword() {
+            const passInput = document.getElementById('password');
+            const eye = document.querySelector('.eye');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eye.textContent = '🙈';
+            } else {
+                passInput.type = 'password';
+                eye.textContent = '👁️';
+            }
+        }
+        document.getElementById('loginForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if(email === '' || password === ''){
+                alert('Please fill all fields');
+                return;
+            }
+            alert('Login Successful! 🎉');
+            window.location.href = 'dashboard.html'; // Go to app dashboard
+        });
+    </script>
+</body>
+</html>

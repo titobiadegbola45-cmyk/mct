@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #007A3D; /* Change this to your dad's brand color. This one is green */
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+.splash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+    padding: 15px;
+    animation: pop 0.8s ease;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #002855; /* Navy blue like Sterling */
+}
+
+.tagline {
+    font-size: 14px;
+    color: #E0E0E0;
+    margin-top: 40px;
+}
+
+.tagline b {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); }
+    100% { transform: scale(1); }
+}

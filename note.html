@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    index, create account , login , otp 
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: gold;
+    }
+
+    #login {
+        display: none;
+    }
+
+    .form {
+        box-shadow: 5px 12px 12px;
+        padding: 50px;
+        width: 100%;
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+        border: 3px solid black;
+        height: 50px;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.032);
+        padding: 10px;
+    }
+
+    input::placeholder {
+        color: black;
+        font-size: larger;
+    }
+
+    button {
+        height: 50px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    #msgDIV {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        background-color: white;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 8px;
+        display: none;
+    }
+</style>
+
+<body>
+    <p id="msgDIV"></p>
+    <div class="form" id="creatAccount">
+        <h1>Create account</h1>
+        <input type="text" id="name" placeholder="enter your name">
+        <br>
+        <input type="text" id="email" placeholder="enter your email">
+        <br>
+        <input type="text" id="password" placeholder="enter your Password">
+        <br>
+        <button id="creatAcc">click</button>
+        <br>
+        <small id="LoginForm">Already have an account</small>
+    </div>
+        <div class="form" id="login">
+            <h1>Login</h1>
+            <input type="text" placeholder="enter your name" id="loginEmail">
+            <br>
+            <input type="text" placeholder="enter your email" id="loginPass">
+            <br>
+            <button id="loginBtn">click</button>
+            <small id="close account"></small>
+        </div>
+
+        <script>
+
+
+            // function message(message , type , duration =3000){
+            //     const msgDIV = document.getElementById('msgDIV')
+            //        msgDIV.style.display = "flex"
+            //     if(type === "error"){
+            //         msgDIV.textContent = message;
+            //         msgDIV.style.color = "red";
+
+            //     }
+
+            //     if(type === "success"){
+            //         msgDIV.textContent = message;
+            //         msgDIV.style.color = "green"
+
+            //     }
+
+
+
+            //     setTimeout(()=>{
+            //         msgDIV.style.display = "none"
+
+
+            //     },duration)
+
+
+
+
+            // };
+
+
+
+
+
+            const creatAccount = document.getElementById("creatAccount")
+            const NAME = document.getElementById('name');
+            const EMAIL = document.getElementById('email');
+            const PASSWORD = document.getElementById('password');
+            const creatAcc = document.getElementById('creatAcc');
+            const LoginForm = document.getElementById('LoginForm');
+            const loginDiv = document.getElementById('login')
+
+
+
+            creatAcc.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const nameValue = NAME.value.trim();
+                const emailValue = EMAIL.value.trim();
+                const passValue = PASSWORD.value.trim();
+
+                if (!nameValue || !emailValue || !passValue) {
+                    message("fill the form", "error",)
+                    return;
+                }
+
+
+                localStorage.setItem('email', emailValue);
+                localStorage.setItem('name', nameValue);
+                localStorage.setItem('pass', passValue);
+
+
+                message("success", "success")
+
+                NAME.value = "";
+                EMAIL.value = "";
+                PASSWORD.value = "";
+            });
+
+            document.getElementById('LoginForm').addEventListener('click', () => {
+
+                creatAccount.style.display = "none";
+                loginDiv.style.display = "flex"
+            });
+
+
+            const savedName = localStorage.getItem('name');
+            const savedEmail = localStorage.getItem('email');
+            const savedPass = localStorage.getItem('pass');
+
+
+            console.log(savedName, savedEmail, savedPass)
+
+
+
+
+
+            const loginEmail = document.getElementById('loginEmail');
+            const loginPass = document.getElementById('loginPass');
+            const loginBtn = document.getElementById('loginBtn');
+
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+
+
+
+                const EmailValue = loginEmail.value.trim();
+                const PassValue = loginPass.value.trim();
+
+                if (EmailValue !== savedEmail || PassValue !== savedPass) {
+                    message('please create an account', "error")
+                    return;
+                }
+
+                message(`welcome back ${savedName}`, "success")
+
+                setTimeout(() => {
+                    window.location.href = "calculator.html"
+
+                    loginEmail.value = "";
+                    loginPass.value = "";
+
+                }, 1000)
+
+                window.location.href = "directory.html"
+
+                loginEmail.value = "";
+                loginPass.value = "";
+
+            });
+
+            function message(message, type, duration = 3000) {
+
+
+                const msgDIV = document.getElementById('msgDIV');
+
+
+                if (type === "error") {
+                    msgDIV.style.display = " flex"
+                    msgDIV.textContent = message;
+                    msgDIV.style.color = "red"
+                };
+
+                if (type === "success") {
+                    msgDIV.style.display = " flex"
+                    msgDIV.textContent = message;
+                    msgDIV.style.color = "green"
+                }
+
+                setTimeout(() => {
+                    msgDIV.style.display = "none";
+                }, duration)
+            }
+
+
+             document.getElementById('close account').addEventListener('click', () => {
+
+                creatAccount.style.display = "flex";
+                loginDiv.style.display = "none"
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+
+</html>
+</body>
+</html>

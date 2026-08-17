@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo">
+        <h2>MOMENT CONTINENTAL INTEGRATED SERVICES</h2>
+      </div>
+
+      <nav id="navMenu">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pilgrimage">Tours &Pilgrimage</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Discover The World With Us</h1>
+      <p>
+        Explore breathtaking destinations, unforgettable adventures,
+        and spiritual journeys tailored just for you.
+      </p>
+
+      <button class="btn" onclick="showMessage()">
+        Travel With Us
+      </button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container about-container">
+
+      <div class="about-image">
+        <img src="pictures/lets go.jpg" alt="Travel">
+      </div>
+
+      <div class="about-text">
+        <h2>About Us</h2>
+
+        <p>
+          Moment Continental Integrated services is committed to creating memorable
+          travel experiences for individuals, families, groups,
+          and organizations.
+        </p>
+
+        <p>
+          We specialize in local and international tours,
+          pilgrimage journeys, travel consultations,
+          reservations, and personalized travel planning.
+        </p>
+
+        <p>
+          Our mission is to make travel easier, enjoyable,
+          affordable, and unforgettable.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOURS &PILGRIMAGE -->
+  <section class="pilgrimage section" id="pilgrimage">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Tours &Pilgrimage Packages</h2>
+        <p>Spiritual journeys for individuals and groups</p>
+      </div>
+
+      <div class="pilgrimage-grid">
+
+        <div class="pilgrimage-card">
+          <i class="fas fa-kaaba"></i>
+          <h3>Umrah Package</h3>
+          <p>
+            Complete Umrah arrangements including accommodation,
+            transportation, and guidance.
+          </p>
+        </div>
+
+        <div class="pilgrimage-card">
+          <i class="fas fa-mosque"></i>
+          <h3>Hajj Package</h3>
+          <p>
+            Well-organized Hajj pilgrimage services for a smooth
+            and spiritual experience.
+          </p>
+        </div>
+
+        <div class="pilgrimage-card">
+          <i class="fas fa-church"></i>
+          <h3>Holy Land Tour</h3>
+          <p>
+            Visit Jerusalem, Bethlehem, Nazareth and other
+            historic biblical sites.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+          <!-- REVIEWS-->
+
+    <section class="sectionss" id="testimonials">
+
+      <div  class="container">
+
+        <h2 class="title">What Clients Say</h2>
+
+    <div class="testimonial-container">
+
+      <div class="testimonial">
+        <p>
+          "Amazing service and unforgettable experience!"
+        </p>
+
+        <h4>- Sarah</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          "Moment made my honeymoon perfect."
+        </p>
+
+        <h4>- James</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          "Very affordable and professional team."
+        </p>
+
+        <h4>- Daniel</h4>
+      </div>
+
+    </div>
+
+      </div>
+    
+  </section>
+
+ 
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>We would love to hear from you</p>
+      </div>
+
+      <form id="contactForm" class="form">
+
+        <input type="text" id="contactName" placeholder="Your Name">
+
+        <input type="email" id="contactEmail" placeholder="Your Email">
+
+        <textarea id="contactMessage" placeholder="Your Message"></textarea>
+
+        <button type="submit" class="btn">
+          Send Message
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="container footer-content">
+
+      <div>
+        <h3>Moment Continental Integrated service</h3>
+        <p>
+          Making every journey memorable.
+        </p>
+      </div>
+
+      <div class="socials">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Moment Continental Integrated service. Titobi Edits.
+    </div>
+
+  </footer>
+
+  <script>
+    // MOBILE MENU
+
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    // CLOSE MENU AFTER CLICK
+
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+      });
+    });
+
+   function showMessage(){
+      alert("Welcome To Moment Continental Travels");
+    }
+
+    // CONTACT FORM
+
+    const contactForm =
+      document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+      const name =
+        document.getElementById("contactName").value.trim();
+
+      const email =
+        document.getElementById("contactEmail").value.trim();
+
+      const message =
+        document.getElementById("contactMessage").value.trim();
+
+      if (
+        name === "" ||
+        email === "" ||
+        message === ""
+      ) {
+        alert("Please complete all contact fields.");
+        return;
+      }
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+      alert(
+        "Message sent successfully! We will get back to you shortly."
+      );
+
+      contactForm.reset();
+
+    });
+
+    // HEADER SHADOW ON SCROLL
+
+    window.addEventListener("scroll", () => {
+
+      const header =
+        document.querySelector("header");
+
+      if (window.scrollY > 50) {
+        header.style.boxShadow =
+          "0 5px 20px rgba(0,0,0,.15)";
+      } else {
+        header.style.boxShadow =
+          "0 2px 10px rgba(0,0,0,.08)";
+      }
+
+    });
+
+    // SIMPLE REVEAL ANIMATION
+
+    const revealElements =
+      document.querySelectorAll(
+        ".tour-card, .pilgrimage-card, .about-text, .about-image"
+      );
+
+    function revealOnScroll() {
+
+      revealElements.forEach(el => {
+
+        const top =
+          el.getBoundingClientRect().top;
+
+        const screenHeight =
+          window.innerHeight;
+
+        if (top < screenHeight - 100) {
+          el.style.opacity = "1";
+          el.style.transform =
+            "translateY(0)";
+        }
+
+      });
+
+    }
+
+    revealElements.forEach(el => {
+
+      el.style.opacity = "0";
+      el.style.transform =
+        "translateY(40px)";
+      el.style.transition =
+        "all .8s ease";
+
+    });
+
+    window.addEventListener(
+      "scroll",
+      revealOnScroll
+    );
+    revealOnScroll();
+  </script>
+
+</body>
+</html>

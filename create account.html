@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create account </title>
+    <link rel="stylesheet" href="create account.css">
+</head>
+<body>
+    <div class="container">
+        <div class="bg-image"></div>
+        
+        <div class="content">
+            <div class="header">
+                <span class="back-btn" onclick="history.back()">←</span>
+                <h2>✈️ MOMENT CONTINENTAL TRAVELS</h2>
+            </div>
+
+            <h1>Create Account</h1>
+            <p class="subtitle">Join the future of travel with easy bookings</p>
+
+            <div class="social-login">
+                <button class="social-btn" onclick="alert('Google SignUp')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google"> Google
+                </button>
+                <button class="social-btn" onclick="alert('Apple SignUp')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple"> Apple
+                </button>
+            </div>
+
+            <div class="divider">Or sign up with</div>
+
+            <form class="signup-form" id="signupForm">
+                <div class="input-group">
+                    <label>👤 Full Name</label>
+                    <input type="text" id="fullName" placeholder="Enter your full name">
+                    <p class="error" id="nameError">Please enter your name</p>
+                </div>
+
+                <div class="input-group">
+                    <label>📧 Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <p class="error" id="emailError">Please enter a valid email</p>
+                </div>
+
+                <div class="input-group">
+                    <label>🔒 Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <span class="eye" onclick="togglePassword()">👁️</span>
+                    <p class="error" id="passError">Password must be 6+ characters</p>
+                </div>
+
+                <div class="terms">
+                    <input type="checkbox" id="agreeTerms"> 
+                    <label>I agree to <a href="#">Privacy Policy</a> and <a href="#">Terms</a></label>
+                </div>
+
+                <button type="submit" class="btn-signup">Sign Up</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password show/hide
+        function togglePassword() {
+            const passInput = document.getElementById('password');
+            const eye = document.querySelector('.eye');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eye.textContent = '🙈';
+            } else {
+                passInput.type = 'password';
+                eye.textContent = '👁️';
+            }
+        }
+
+        // Form validation + submit
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // stop page reload
+            
+            let isValid = true;
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const terms = document.getElementById('agreeTerms').checked;
+
+            // Reset errors
+            document.querySelectorAll('.error').forEach(el => el.style.display = 'none');
+
+            // Validate name
+            if (name.trim() === '') {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate email
+            if (!email.includes('@') || !email.includes('.')) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate password
+            if (password.length < 6) {
+                document.getElementById('passError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate terms
+            if (!terms) {
+                alert('Please agree to Terms and Privacy Policy');
+                isValid = false;
+            }
+
+            // If all good
+            if (isValid) {
+                alert('Account Created Successfully! 🎉');
+                // Redirect to OTP page
+                window.location.href = 'verify-otp.html'; 
+            }
+        });
+    </script>
+
+</body>
+</html>
