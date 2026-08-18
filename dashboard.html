@@ -1,352 +1,1129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Moment Continental - Dashboard</title>
+
+  <link rel="stylesheet" href="dashboard.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
 </head>
+
 <body>
-    <!-- HEADER -->
-  <header>
-    <div class="container nav-container">
-      <div class="logo">
-        <h2>MOMENT CONTINENTAL INTEGRATED SERVICES</h2>
-      </div>
 
-      <nav id="navMenu">
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#pilgrimage">Tours &Pilgrimage</a></li>
-          <li><a href="#testimonials">Reviews</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+  <!-- ================= SIDEBAR ================= -->
 
-      <div class="hamburger" id="hamburger">
-        <i class="fas fa-bars"></i>
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <i class="fas fa-plane-departure"></i>
+
+      <div>
+        <h2>Moment</h2>
+        <span>Continental</span>
       </div>
     </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-overlay"></div>
+    <nav class="sidebar-nav">
 
-    <div class="hero-content">
-      <h1>Discover The World With Us</h1>
-      <p>
-        Explore breathtaking destinations, unforgettable adventures,
-        and spiritual journeys tailored just for you.
-      </p>
-
-      <button class="btn" onclick="showMessage()">
-        Travel With Us
+      <button class="nav-item active" data-page="overview">
+        <i class="fas fa-chart-line"></i>
+        <span>Overview</span>
       </button>
+
+      <button class="nav-item" data-page="reservations">
+        <i class="fas fa-calendar-check"></i>
+        <span>Reservations</span>
+      </button>
+
+      <button class="nav-item" data-page="customers">
+        <i class="fas fa-users"></i>
+        <span>Customers</span>
+      </button>
+
+      <button class="nav-item" data-page="packages">
+        <i class="fas fa-suitcase-rolling"></i>
+        <span>Tour Packages</span>
+      </button>
+
+      <button class="nav-item" data-page="pilgrimage">
+        <i class="fas fa-mosque"></i>
+        <span>Pilgrimage</span>
+      </button>
+
+      <button class="nav-item" data-page="messages">
+        <i class="fas fa-envelope"></i>
+        <span>Messages</span>
+      </button>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+      <button class="nav-item" data-page="settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </button>
+
+      <button class="nav-item logout-btn" id="logoutBtn">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </button>
+
     </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="container about-container">
+  </aside>
 
-      <div class="about-image">
-        <img src="pictures/lets go.jpg" alt="Travel">
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="main">
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+      <button class="menu-btn" id="menuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="topbar-title">
+        <h2 id="pageTitle">Dashboard</h2>
+        <p>Moment Continental Integrated Services</p>
       </div>
 
-      <div class="about-text">
-        <h2>About Us</h2>
+      <div class="admin-profile">
 
-        <p>
-          Moment Continental Integrated services is committed to creating memorable
-          travel experiences for individuals, families, groups,
-          and organizations.
-        </p>
-
-        <p>
-          We specialize in local and international tours,
-          pilgrimage journeys, travel consultations,
-          reservations, and personalized travel planning.
-        </p>
-
-        <p>
-          Our mission is to make travel easier, enjoyable,
-          affordable, and unforgettable.
-        </p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- TOURS &PILGRIMAGE -->
-  <section class="pilgrimage section" id="pilgrimage">
-
-    <div class="container">
-
-      <div class="section-title">
-        <h2>Tours &Pilgrimage Packages</h2>
-        <p>Spiritual journeys for individuals and groups</p>
-      </div>
-
-      <div class="pilgrimage-grid">
-
-        <div class="pilgrimage-card">
-          <i class="fas fa-kaaba"></i>
-          <h3>Umrah Package</h3>
-          <p>
-            Complete Umrah arrangements including accommodation,
-            transportation, and guidance.
-          </p>
+        <div class="notification">
+          <i class="fas fa-bell"></i>
+          <span>3</span>
         </div>
 
-        <div class="pilgrimage-card">
-          <i class="fas fa-mosque"></i>
-          <h3>Hajj Package</h3>
-          <p>
-            Well-organized Hajj pilgrimage services for a smooth
-            and spiritual experience.
-          </p>
+        <div class="avatar">
+          A
         </div>
 
-        <div class="pilgrimage-card">
-          <i class="fas fa-church"></i>
-          <h3>Holy Land Tour</h3>
-          <p>
-            Visit Jerusalem, Bethlehem, Nazareth and other
-            historic biblical sites.
-          </p>
+        <div class="admin-info">
+          <strong>Admin</strong>
+          <small>Administrator</small>
         </div>
 
       </div>
 
-    </div>
+    </header>
 
-  </section>
 
-          <!-- REVIEWS-->
+    <!-- ================= CONTENT ================= -->
 
-    <section class="sectionss" id="testimonials">
+    <section class="content">
 
-      <div  class="container">
 
-        <h2 class="title">What Clients Say</h2>
+      <!-- OVERVIEW -->
 
-    <div class="testimonial-container">
+      <div class="page active-page" id="overview">
 
-      <div class="testimonial">
-        <p>
-          "Amazing service and unforgettable experience!"
-        </p>
+        <div class="welcome">
 
-        <h4>- Sarah</h4>
+          <div>
+            <h1>Welcome back, Admin 👋</h1>
+
+            <p>
+              Here's what's happening with Moment Continental today.
+            </p>
+          </div>
+
+          <button class="primary-btn" onclick="openReservationModal()">
+            <i class="fas fa-plus"></i>
+            New Reservation
+          </button>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+
+            <div class="stat-icon blue">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+
+            <div>
+              <span>Total Reservations</span>
+              <h2 id="totalReservations">24</h2>
+              <small>All reservations</small>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon green">
+              <i class="fas fa-users"></i>
+            </div>
+
+            <div>
+              <span>Total Customers</span>
+              <h2 id="totalCustomers">18</h2>
+              <small>Registered customers</small>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon orange">
+              <i class="fas fa-suitcase"></i>
+            </div>
+
+            <div>
+              <span>Tour Packages</span>
+              <h2 id="totalPackages">6</h2>
+              <small>Available packages</small>
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon purple">
+              <i class="fas fa-envelope"></i>
+            </div>
+
+            <div>
+              <span>Messages</span>
+              <h2 id="totalMessages">12</h2>
+              <small>Unread messages</small>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- DASHBOARD GRID -->
+
+        <div class="dashboard-grid">
+
+
+          <!-- RECENT RESERVATIONS -->
+
+          <div class="panel large-panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Recent Reservations</h3>
+                <p>Latest customer reservations</p>
+              </div>
+
+              <button
+                class="text-btn"
+                onclick="showPage('reservations')"
+              >
+                View All
+              </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+                    <th>Customer</th>
+                    <th>Service</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+
+                </thead>
+
+                <tbody id="recentReservations">
+
+                  <tr>
+                    <td>
+                      <strong>Sarah Johnson</strong>
+                    </td>
+
+                    <td>Umrah Package</td>
+
+                    <td>18 Aug 2026</td>
+
+                    <td>
+                      <span class="status pending">
+                        Pending
+                      </span>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td>
+                      <strong>James Williams</strong>
+                    </td>
+
+                    <td>Holy Land Tour</td>
+
+                    <td>17 Aug 2026</td>
+
+                    <td>
+                      <span class="status approved">
+                        Approved
+                      </span>
+                    </td>
+                  </tr>
+
+
+                  <tr>
+                    <td>
+                      <strong>Daniel Smith</strong>
+                    </td>
+
+                    <td>Hajj Package</td>
+
+                    <td>16 Aug 2026</td>
+
+                    <td>
+                      <span class="status pending">
+                        Pending
+                      </span>
+                    </td>
+                  </tr>
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+
+          <!-- QUICK ACTIONS -->
+
+          <div class="panel">
+
+            <div class="panel-header">
+
+              <div>
+                <h3>Quick Actions</h3>
+                <p>Manage your website</p>
+              </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+              <button onclick="openReservationModal()">
+                <i class="fas fa-calendar-plus"></i>
+                <span>New Reservation</span>
+              </button>
+
+              <button onclick="showPage('packages')">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Tour Package</span>
+              </button>
+
+              <button onclick="showPage('messages')">
+                <i class="fas fa-envelope"></i>
+                <span>View Messages</span>
+              </button>
+
+              <button onclick="showPage('customers')">
+                <i class="fas fa-user-plus"></i>
+                <span>View Customers</span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="testimonial">
-        <p>
-          "Moment made my honeymoon perfect."
-        </p>
 
-        <h4>- James</h4>
+      <!-- ================= RESERVATIONS ================= -->
+
+      <div class="page" id="reservations">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Reservations</h1>
+            <p>Manage customer travel reservations.</p>
+          </div>
+
+          <button
+            class="primary-btn"
+            onclick="openReservationModal()"
+          >
+            <i class="fas fa-plus"></i>
+            New Reservation
+          </button>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="search-row">
+
+            <input
+              type="text"
+              id="reservationSearch"
+              placeholder="Search reservations..."
+            >
+
+            <select id="reservationFilter">
+
+              <option value="all">
+                All Status
+              </option>
+
+              <option value="pending">
+                Pending
+              </option>
+
+              <option value="approved">
+                Approved
+              </option>
+
+              <option value="cancelled">
+                Cancelled
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="table-container">
+
+            <table>
+
+              <thead>
+
+                <tr>
+                  <th>Customer</th>
+                  <th>Phone</th>
+                  <th>Service</th>
+                  <th>Travel Date</th>
+                  <th>People</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+
+              </thead>
+
+              <tbody id="reservationTable">
+
+                <tr>
+
+                  <td>Sarah Johnson</td>
+
+                  <td>08012345678</td>
+
+                  <td>Umrah Package</td>
+
+                  <td>25 Sep 2026</td>
+
+                  <td>2</td>
+
+                  <td>
+                    <span class="status pending">
+                      Pending
+                    </span>
+                  </td>
+
+                  <td>
+
+                    <button
+                      class="action-btn"
+                      onclick="viewReservation('Sarah Johnson')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>James Williams</td>
+
+                  <td>08098765432</td>
+
+                  <td>Holy Land Tour</td>
+
+                  <td>10 Oct 2026</td>
+
+                  <td>4</td>
+
+                  <td>
+                    <span class="status approved">
+                      Approved
+                    </span>
+                  </td>
+
+                  <td>
+
+                    <button
+                      class="action-btn"
+                      onclick="viewReservation('James Williams')"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="testimonial">
-        <p>
-          "Very affordable and professional team."
-        </p>
 
-        <h4>- Daniel</h4>
+      <!-- ================= CUSTOMERS ================= -->
+
+      <div class="page" id="customers">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Customers</h1>
+            <p>View and manage your customers.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="search-row">
+
+            <input
+              type="text"
+              id="customerSearch"
+              placeholder="Search customers..."
+            >
+
+          </div>
+
+
+          <div class="table-container">
+
+            <table>
+
+              <thead>
+
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Reservations</th>
+                  <th>Joined</th>
+                </tr>
+
+              </thead>
+
+              <tbody id="customerTable">
+
+                <tr>
+
+                  <td>
+                    <strong>Sarah Johnson</strong>
+                  </td>
+
+                  <td>
+                    sarah@example.com
+                  </td>
+
+                  <td>
+                    08012345678
+                  </td>
+
+                  <td>2</td>
+
+                  <td>
+                    Aug 2026
+                  </td>
+
+                </tr>
+
+
+                <tr>
+
+                  <td>
+                    <strong>James Williams</strong>
+                  </td>
+
+                  <td>
+                    james@example.com
+                  </td>
+
+                  <td>
+                    08098765432
+                  </td>
+
+                  <td>1</td>
+
+                  <td>
+                    Aug 2026
+                  </td>
+
+                </tr>
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
       </div>
 
-    </div>
+
+      <!-- ================= PACKAGES ================= -->
+
+      <div class="page" id="packages">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Tour Packages</h1>
+            <p>Manage your available travel packages.</p>
+          </div>
+
+          <button class="primary-btn" onclick="addPackage()">
+            <i class="fas fa-plus"></i>
+            Add Package
+          </button>
+
+        </div>
+
+
+        <div class="package-grid">
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-kaaba"></i>
+            </div>
+
+            <h3>Umrah Package</h3>
+
+            <p>
+              Complete Umrah arrangements including
+              accommodation and transportation.
+            </p>
+
+            <div class="package-actions">
+
+              <button onclick="editPackage('Umrah Package')">
+                <i class="fas fa-edit"></i>
+              </button>
+
+              <button onclick="deletePackage('Umrah Package')">
+                <i class="fas fa-trash"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-mosque"></i>
+            </div>
+
+            <h3>Hajj Package</h3>
+
+            <p>
+              Organized Hajj pilgrimage services
+              for individuals and groups.
+            </p>
+
+            <div class="package-actions">
+
+              <button onclick="editPackage('Hajj Package')">
+                <i class="fas fa-edit"></i>
+              </button>
+
+              <button onclick="deletePackage('Hajj Package')">
+                <i class="fas fa-trash"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-church"></i>
+            </div>
+
+            <h3>Holy Land Tour</h3>
+
+            <p>
+              Visit Jerusalem, Bethlehem, Nazareth
+              and other historic locations.
+            </p>
+
+            <div class="package-actions">
+
+              <button onclick="editPackage('Holy Land Tour')">
+                <i class="fas fa-edit"></i>
+              </button>
+
+              <button onclick="deletePackage('Holy Land Tour')">
+                <i class="fas fa-trash"></i>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
-    
-  </section>
 
- 
 
-  <!-- CONTACT -->
-  <section class="contact section" id="contact">
+      <!-- ================= PILGRIMAGE ================= -->
 
-    <div class="container">
+      <div class="page" id="pilgrimage">
 
-      <div class="section-title">
-        <h2>Contact Us</h2>
-        <p>We would love to hear from you</p>
+        <div class="page-heading">
+
+          <div>
+            <h1>Pilgrimage</h1>
+            <p>Manage pilgrimage services.</p>
+          </div>
+
+          <button class="primary-btn" onclick="addPackage()">
+            <i class="fas fa-plus"></i>
+            Add Service
+          </button>
+
+        </div>
+
+
+        <div class="package-grid">
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-kaaba"></i>
+            </div>
+
+            <h3>Umrah</h3>
+
+            <p>
+              Spiritual journey with accommodation,
+              transportation and guidance.
+            </p>
+
+            <span class="available">
+              Available
+            </span>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-mosque"></i>
+            </div>
+
+            <h3>Hajj</h3>
+
+            <p>
+              Well-organized Hajj pilgrimage services.
+            </p>
+
+            <span class="available">
+              Available
+            </span>
+
+          </div>
+
+
+          <div class="package-card">
+
+            <div class="package-icon">
+              <i class="fas fa-church"></i>
+            </div>
+
+            <h3>Holy Land</h3>
+
+            <p>
+              Explore important historic and biblical sites.
+            </p>
+
+            <span class="available">
+              Available
+            </span>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <form id="contactForm" class="form">
 
-        <input type="text" id="contactName" placeholder="Your Name">
+      <!-- ================= MESSAGES ================= -->
 
-        <input type="email" id="contactEmail" placeholder="Your Email">
+      <div class="page" id="messages">
 
-        <textarea id="contactMessage" placeholder="Your Message"></textarea>
+        <div class="page-heading">
 
-        <button type="submit" class="btn">
-          Send Message
+          <div>
+            <h1>Messages</h1>
+            <p>Messages received from your website.</p>
+          </div>
+
+        </div>
+
+
+        <div class="messages-list">
+
+          <div class="message-card">
+
+            <div class="message-avatar">
+              S
+            </div>
+
+            <div class="message-content">
+
+              <div class="message-top">
+
+                <strong>Sarah Johnson</strong>
+
+                <span>
+                  Today
+                </span>
+
+              </div>
+
+              <p>
+                I would like to know more about your Umrah package.
+              </p>
+
+              <small>
+                sarah@example.com
+              </small>
+
+            </div>
+
+            <button class="action-btn">
+              <i class="fas fa-eye"></i>
+            </button>
+
+          </div>
+
+
+          <div class="message-card">
+
+            <div class="message-avatar">
+              D
+            </div>
+
+            <div class="message-content">
+
+              <div class="message-top">
+
+                <strong>Daniel Smith</strong>
+
+                <span>
+                  Yesterday
+                </span>
+
+              </div>
+
+              <p>
+                Please send me information about the Holy Land tour.
+              </p>
+
+              <small>
+                daniel@example.com
+              </small>
+
+            </div>
+
+            <button class="action-btn">
+              <i class="fas fa-eye"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= SETTINGS ================= -->
+
+      <div class="page" id="settings">
+
+        <div class="page-heading">
+
+          <div>
+            <h1>Settings</h1>
+            <p>Manage your dashboard settings.</p>
+          </div>
+
+        </div>
+
+
+        <div class="panel settings-panel">
+
+          <h3>Account Information</h3>
+
+          <div class="settings-form">
+
+            <label>
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              value="Administrator"
+            >
+
+
+            <label>
+              Email
+            </label>
+
+            <input
+              type="email"
+              value="admin@momentcontinental.com"
+            >
+
+
+            <label>
+              Phone
+            </label>
+
+            <input
+              type="tel"
+              placeholder="Enter phone number"
+            >
+
+
+            <button class="primary-btn">
+              Save Changes
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= RESERVATION MODAL ================= -->
+
+  <div class="modal" id="reservationModal">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <div>
+          <h2>New Reservation</h2>
+          <p>Create a customer reservation.</p>
+        </div>
+
+        <button
+          class="close-modal"
+          onclick="closeReservationModal()"
+        >
+          &times;
+        </button>
+
+      </div>
+
+
+      <form id="reservationForm">
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label>
+              Customer Name
+            </label>
+
+            <input
+              type="text"
+              id="customerName"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="customerEmail"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Phone
+            </label>
+
+            <input
+              type="tel"
+              id="customerPhone"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Service
+            </label>
+
+            <select id="service" required>
+
+              <option value="">
+                Select service
+              </option>
+
+              <option value="Tour">
+                Tour
+              </option>
+
+              <option value="Umrah">
+                Umrah
+              </option>
+
+              <option value="Hajj">
+                Hajj
+              </option>
+
+              <option value="Holy Land">
+                Holy Land
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Travel Date
+            </label>
+
+            <input
+              type="date"
+              id="travelDate"
+              required
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Number of People
+            </label>
+
+            <input
+              type="number"
+              id="numberOfPeople"
+              min="1"
+              value="1"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Additional Message
+          </label>
+
+          <textarea
+            id="reservationMessage"
+            rows="4"
+            placeholder="Additional information..."
+          ></textarea>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="primary-btn full-btn"
+        >
+          Create Reservation
         </button>
 
       </form>
 
     </div>
 
-  </section>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
 
-    <div class="container footer-content">
-
-      <div>
-        <h3>Moment Continental Integrated service</h3>
-        <p>
-          Making every journey memorable.
-        </p>
-      </div>
-
-      <div class="socials">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-x-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-      </div>
-
-    </div>
-
-    <div class="copyright">
-      © 2026 Moment Continental Integrated service. Titobi Edits.
-    </div>
-
-  </footer>
-
-  <script>
-    // MOBILE MENU
-
-    const hamburger = document.getElementById("hamburger");
-    const navMenu = document.getElementById("navMenu");
-
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
-
-    // CLOSE MENU AFTER CLICK
-
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("active");
-      });
-    });
-
-   function showMessage(){
-      alert("Welcome To Moment Continental Travels");
-    }
-
-    // CONTACT FORM
-
-    const contactForm =
-      document.getElementById("contactForm");
-
-    contactForm.addEventListener("submit", function (e) {
-
-      e.preventDefault();
-
-      const name =
-        document.getElementById("contactName").value.trim();
-
-      const email =
-        document.getElementById("contactEmail").value.trim();
-
-      const message =
-        document.getElementById("contactMessage").value.trim();
-
-      if (
-        name === "" ||
-        email === "" ||
-        message === ""
-      ) {
-        alert("Please complete all contact fields.");
-        return;
-      }
-
-      const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      if (!emailPattern.test(email)) {
-        alert("Please enter a valid email.");
-        return;
-      }
-
-      alert(
-        "Message sent successfully! We will get back to you shortly."
-      );
-
-      contactForm.reset();
-
-    });
-
-    // HEADER SHADOW ON SCROLL
-
-    window.addEventListener("scroll", () => {
-
-      const header =
-        document.querySelector("header");
-
-      if (window.scrollY > 50) {
-        header.style.boxShadow =
-          "0 5px 20px rgba(0,0,0,.15)";
-      } else {
-        header.style.boxShadow =
-          "0 2px 10px rgba(0,0,0,.08)";
-      }
-
-    });
-
-    // SIMPLE REVEAL ANIMATION
-
-    const revealElements =
-      document.querySelectorAll(
-        ".tour-card, .pilgrimage-card, .about-text, .about-image"
-      );
-
-    function revealOnScroll() {
-
-      revealElements.forEach(el => {
-
-        const top =
-          el.getBoundingClientRect().top;
-
-        const screenHeight =
-          window.innerHeight;
-
-        if (top < screenHeight - 100) {
-          el.style.opacity = "1";
-          el.style.transform =
-            "translateY(0)";
-        }
-
-      });
-
-    }
-
-    revealElements.forEach(el => {
-
-      el.style.opacity = "0";
-      el.style.transform =
-        "translateY(40px)";
-      el.style.transition =
-        "all .8s ease";
-
-    });
-
-    window.addEventListener(
-      "scroll",
-      revealOnScroll
-    );
-    revealOnScroll();
-  </script>
+  <script src="dashboard.js"></script>
 
 </body>
 </html>
