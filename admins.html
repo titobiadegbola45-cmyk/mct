@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moment Continental - Admin Dashboard</title>
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="admins.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     ADMIN SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <!-- BRAND -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            <i class="fas fa-plane-departure"></i>
+        </div>
+
+        <div>
+            <h2>Moment</h2>
+            <span>Continental</span>
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN NAVIGATION -->
+
+    <nav class="sidebar-nav">
+
+        <!-- OVERVIEW -->
+
+        <button
+            class="nav-item active"
+            data-page="overview"
+        >
+
+            <i class="fas fa-chart-line"></i>
+
+            <span>Overview</span>
+
+        </button>
+
+
+        <!-- RESERVATIONS -->
+
+        <button
+            class="nav-item"
+            data-page="reservations"
+        >
+
+            <i class="fas fa-calendar-check"></i>
+
+            <span>Reservations</span>
+
+        </button>
+
+
+        <!-- CUSTOMERS -->
+
+        <button
+            class="nav-item"
+            data-page="customers"
+        >
+
+            <i class="fas fa-users"></i>
+
+            <span>Customers</span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="sidebar-bottom">
+
+        <!-- SETTINGS -->
+
+        <button
+            class="nav-item"
+            data-page="settings"
+        >
+
+            <i class="fas fa-cog"></i>
+
+            <span>Settings</span>
+
+        </button>
+
+
+        <!-- LOGOUT -->
+
+        <button
+            class="nav-item logout-btn"
+            id="logoutBtn"
+        >
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+
+        </button>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================= -->
+
+    <header class="topbar">
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+            class="menu-btn"
+            id="menuBtn"
+        >
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="topbar-title">
+
+            <h2 id="pageTitle">
+                Overview
+            </h2>
+
+            <p>
+                Moment Continental Integrated Services
+            </p>
+
+        </div>
+
+
+        <!-- ADMIN PROFILE -->
+
+        <div class="admin-profile">
+
+
+            <div class="notification">
+
+                <i class="fas fa-bell"></i>
+
+                <span>
+                    3
+                </span>
+
+            </div>
+
+
+            <!-- ADMIN AVATAR -->
+
+            <div
+                class="avatar"
+                id="adminAvatar"
+            >
+                A
+            </div>
+
+
+            <!-- ADMIN INFORMATION -->
+
+            <div class="admin-info">
+
+                <strong id="adminDisplayName">
+                    Admin
+                </strong>
+
+                <small>
+                    Administrator
+                </small>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         DASHBOARD CONTENT
+    ================================================= -->
+
+    <section class="content">
+
+
+
+        <!-- =============================================
+             OVERVIEW PAGE
+        ============================================== -->
+
+        <div
+            class="page active-page"
+            id="overview"
+        >
+
+
+            <!-- WELCOME -->
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>
+                        Welcome back,
+                        <span id="welcomeAdminName">
+                            Admin
+                        </span>
+                        👋
+                    </h1>
+
+                    <p>
+                        Here's what's happening with Moment Continental today.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openReservationModal()"
+                >
+
+                    <i class="fas fa-plus"></i>
+
+                    New Reservation
+
+                </button>
+
+            </div>
+
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+
+                <!-- TOTAL RESERVATIONS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+
+                        <i class="fas fa-calendar-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Total Reservations
+                        </span>
+
+                        <h2 id="totalReservations">
+                            24
+                        </h2>
+
+                        <small>
+                            All reservations
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- TOTAL CUSTOMERS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+
+                        <i class="fas fa-users"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Total Customers
+                        </span>
+
+                        <h2 id="totalCustomers">
+                            18
+                        </h2>
+
+                        <small>
+                            Registered customers
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PENDING RESERVATIONS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+
+                        <i class="fas fa-clock"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Pending Reservations
+                        </span>
+
+                        <h2 id="pendingReservations">
+                            6
+                        </h2>
+
+                        <small>
+                            Awaiting confirmation
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- APPROVED RESERVATIONS -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+
+                        <i class="fas fa-circle-check"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Approved Reservations
+                        </span>
+
+                        <h2 id="approvedReservations">
+                            18
+                        </h2>
+
+                        <small>
+                            Confirmed bookings
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECENT RESERVATIONS -->
+
+                <div class="panel large-panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Recent Reservations
+                            </h3>
+
+                            <p>
+                                Latest customer reservations
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="text-btn"
+                            onclick="showPage('reservations')"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Customer
+                                    </th>
+
+                                    <th>
+                                        Service
+                                    </th>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="recentReservations">
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            Sarah Johnson
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Umrah Spiritual Pilgrimage
+                                    </td>
+
+                                    <td>
+                                        18 Aug 2026
+                                    </td>
+
+                                    <td>
+                                        <span class="status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            James Williams
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Israel & Jordan Tour
+                                    </td>
+
+                                    <td>
+                                        17 Aug 2026
+                                    </td>
+
+                                    <td>
+                                        <span class="status approved">
+                                            Approved
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            Daniel Smith
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Hajj Pilgrimage Tour
+                                    </td>
+
+                                    <td>
+                                        16 Aug 2026
+                                    </td>
+
+                                    <td>
+                                        <span class="status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Quick Actions
+                            </h3>
+
+                            <p>
+                                Manage reservations and customers
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="quick-actions">
+
+
+                        <!-- NEW RESERVATION -->
+
+                        <button
+                            onclick="openReservationModal()"
+                        >
+
+                            <i class="fas fa-calendar-plus"></i>
+
+                            <span>
+                                New Reservation
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- VIEW RESERVATIONS -->
+
+                        <button
+                            onclick="showPage('reservations')"
+                        >
+
+                            <i class="fas fa-calendar-check"></i>
+
+                            <span>
+                                View Reservations
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- VIEW CUSTOMERS -->
+
+                        <button
+                            onclick="showPage('customers')"
+                        >
+
+                            <i class="fas fa-users"></i>
+
+                            <span>
+                                View Customers
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- SETTINGS -->
+
+                        <button
+                            onclick="showPage('settings')"
+                        >
+
+                            <i class="fas fa-cog"></i>
+
+                            <span>
+                                Settings
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             RESERVATIONS PAGE
+        ============================================== -->
+
+        <div
+            class="page"
+            id="reservations"
+        >
+
+
+            <div class="page-heading">
+
+
+                <div>
+
+                    <h1>
+                        Reservations
+                    </h1>
+
+                    <p>
+                        Manage customer travel reservations.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="openReservationModal()"
+                >
+
+                    <i class="fas fa-plus"></i>
+
+                    New Reservation
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="panel">
+
+
+                <!-- SEARCH AND FILTER -->
+
+                <div class="search-row">
+
+
+                    <input
+                        type="text"
+                        id="reservationSearch"
+                        placeholder="Search reservations..."
+                    >
+
+
+                    <select id="reservationFilter">
+
+                        <option value="all">
+                            All Status
+                        </option>
+
+                        <option value="pending">
+                            Pending
+                        </option>
+
+                        <option value="approved">
+                            Approved
+                        </option>
+
+                        <option value="cancelled">
+                            Cancelled
+                        </option>
+
+                    </select>
+
+
+                </div>
+
+
+
+                <!-- RESERVATION TABLE -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Customer</th>
+
+                                <th>Phone</th>
+
+                                <th>Service</th>
+
+                                <th>Travel Date</th>
+
+                                <th>People</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="reservationTable">
+
+
+                            <tr>
+
+                                <td>
+                                    Sarah Johnson
+                                </td>
+
+                                <td>
+                                    08012345678
+                                </td>
+
+                                <td>
+                                    Umrah Spiritual Pilgrimage
+                                </td>
+
+                                <td>
+                                    25 Sep 2026
+                                </td>
+
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+                                    <span class="status pending">
+                                        Pending
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn"
+                                        onclick="viewReservation('Sarah Johnson')"
+                                    >
+
+                                        <i class="fas fa-eye"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    James Williams
+                                </td>
+
+                                <td>
+                                    08098765432
+                                </td>
+
+                                <td>
+                                    Israel & Jordan Tour
+                                </td>
+
+                                <td>
+                                    10 Oct 2026
+                                </td>
+
+                                <td>
+                                    4
+                                </td>
+
+                                <td>
+                                    <span class="status approved">
+                                        Approved
+                                    </span>
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="action-btn"
+                                        onclick="viewReservation('James Williams')"
+                                    >
+
+                                        <i class="fas fa-eye"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             CUSTOMERS PAGE
+        ============================================== -->
+
+        <div
+            class="page"
+            id="customers"
+        >
+
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Customers
+                    </h1>
+
+                    <p>
+                        View and manage registered customers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="panel">
+
+
+                <!-- CUSTOMER SEARCH -->
+
+                <div class="search-row">
+
+                    <input
+                        type="text"
+                        id="customerSearch"
+                        placeholder="Search customers..."
+                    >
+
+                </div>
+
+
+
+                <!-- CUSTOMER TABLE -->
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+
+                                <th>Email</th>
+
+                                <th>Phone</th>
+
+                                <th>Reservations</th>
+
+                                <th>Joined</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="customerTable">
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        Sarah Johnson
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    sarah@example.com
+                                </td>
+
+                                <td>
+                                    08012345678
+                                </td>
+
+                                <td>
+                                    2
+                                </td>
+
+                                <td>
+                                    Aug 2026
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        James Williams
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    james@example.com
+                                </td>
+
+                                <td>
+                                    08098765432
+                                </td>
+
+                                <td>
+                                    1
+                                </td>
+
+                                <td>
+                                    Aug 2026
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =============================================
+             SETTINGS PAGE
+        ============================================== -->
+
+        <div
+            class="page"
+            id="settings"
+        >
+
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Settings
+                    </h1>
+
+                    <p>
+                        Manage your administrator information.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="panel settings-panel">
+
+
+                <h3>
+                    Administrator Information
+                </h3>
+
+
+                <div class="settings-form">
+
+
+                    <label>
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settingsAdminName"
+                        value="Administrator"
+                    >
+
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="settingsAdminEmail"
+                        placeholder="Enter admin email"
+                    >
+
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="settingsAdminPhone"
+                        placeholder="Enter phone number"
+                    >
+
+
+                    <button
+                        class="primary-btn"
+                        id="saveSettingsBtn"
+                    >
+                        Save Changes
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     NEW RESERVATION MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="reservationModal"
+>
+
+
+    <div class="modal-content">
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="modal-header">
+
+
+            <div>
+
+                <h2>
+                    New Reservation
+                </h2>
+
+                <p>
+                    Create a customer reservation.
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-modal"
+                onclick="closeReservationModal()"
+            >
+                &times;
+            </button>
+
+
+        </div>
+
+
+
+        <!-- RESERVATION FORM -->
+
+        <form id="reservationForm">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Customer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="customerEmail"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Phone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Service
+                    </label>
+
+                    <select
+                        id="service"
+                        required
+                    >
+
+                        <option value="">
+                            Select service
+                        </option>
+
+                        <option value="Israel & Jordan Tour & Pilgrimage">
+                            Israel & Jordan Tour & Pilgrimage
+                        </option>
+
+                        <option value="Umrah Spiritual Pilgrimage">
+                            Umrah Spiritual Pilgrimage
+                        </option>
+
+                        <option value="Hajj Pilgrimage Tour">
+                            Hajj Pilgrimage Tour
+                        </option>
+
+                        <option value="Flight Ticket">
+                            Flight Ticket
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Travel Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="travelDate"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Number of People
+                    </label>
+
+                    <input
+                        type="number"
+                        id="numberOfPeople"
+                        min="1"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ADDITIONAL MESSAGE -->
+
+            <div class="form-group">
+
+                <label>
+                    Additional Message
+                </label>
+
+                <textarea
+                    id="reservationMessage"
+                    rows="4"
+                    placeholder="Additional information..."
+                ></textarea>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="primary-btn full-btn"
+            >
+
+                Create Reservation
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- ADMIN JAVASCRIPT -->
+
+<script src="admins.js"></script>
+
+</body>
+</html>

@@ -3,193 +3,1142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login - Dad's Travel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
     <style>
-        *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif
-}
 
-:root {
-    --green-primary: #007A3D;   /* Main green */
-    --green-dark: #005C2E;      /* Dark green for hover */
-    --green-light: #E8F5E9;     /* Light green background */
-    --white: #FFFFFF;
-    --text-dark: #1A2E1A;
-    --text-gray: #6B7280;
-    --border: #D1E7DD;
-}
+        /* ===============================
+           RESET
+        =============================== */
 
-body{
-    background: var(--green-light); /* Light green bg */
-    color: var(--text-dark);
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px
-}
-
-.box{
-    width:100%;
-    max-width:400px;
-    background: var(--white);
-    padding: 30px 25px;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0,122,61,0.1);
-}
-
-h1{
-    font-size:28px;
-    margin-bottom:8px;
-    color: var(--green-dark);
-    text-align: center;
-}
-
-.subtitle{
-    color: var(--text-gray);
-    margin-bottom:25px;
-    font-size:14px;
-    text-align: center;
-}
-
-.input-group{
-    margin-bottom:18px;
-    position: relative; 
-}
-
-.input-group label{
-    display:block;
-    font-size:13px;
-    margin-bottom:8px;
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-.input-group input{
-    width:100%;
-    padding:14px;
-    background: var(--white);
-    border:1px solid var(--border);
-    border-radius:12px;
-    color: var(--text-dark);
-    font-size: 14px;
-}
-
-.input-group input:focus {
-    border-color: var(--green-primary);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0,122,61,0.1);
-}
-
-.input-group input::placeholder {
-    color: #9CA3AF;
-}
-
-.eye{
-    position: absolute;
-    right: 14px;
-    top: 50%; /* center it vertically */
-    transform: translateY(-2px); /* fine tune */
-    margin-top: 10px; /* push it down below the label */
-    cursor: pointer;
-    font-size: 18px;
-    color: var(--green-primary);
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
 
-.forgot{
-    text-align:right;
-    font-size:12px;
-    margin-bottom:20px
-}
+        /* ===============================
+           COLORS
+        =============================== */
 
-.forgot a{
-    color: var(--green-primary);
-    text-decoration:none;
-    font-weight: 600;
-}
+        :root {
+            --green-primary: #007A3D;
+            --green-dark: #005C2E;
+            --green-light: #E8F5E9;
+            --white: #FFFFFF;
+            --text-dark: #1A2E1A;
+            --text-gray: #6B7280;
+            --border: #D1E7DD;
+        }
 
-.btn{
-    width:100%;
-    padding:16px;
-    background: var(--green-primary); /* Green button */
-    border:none;
-    border-radius:12px;
-    color: var(--white); /* White text */
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition: 0.3s;
-}
 
-.btn:active{
-    background: var(--green-dark); /* Darker on click */
-}
+        /* ===============================
+           BODY
+        =============================== */
 
-.signup-link{
-    text-align:center;
-    margin-top:20px;
-    font-size:13px;
-    color: var(--text-gray)
-}
+        body {
+            background: var(--green-light);
+            color: var(--text-dark);
+            min-height: 100vh;
 
-.signup-link a{
-    color: var(--green-primary);
-    font-weight:600;
-    text-decoration:none
-}   </style>
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+        }
+
+
+        /* ===============================
+           LOGIN BOX
+        =============================== */
+
+        .box {
+            width: 100%;
+            max-width: 420px;
+
+            background: var(--white);
+
+            padding: 35px 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 30px rgba(0, 122, 61, 0.12);
+        }
+
+
+        /* ===============================
+           LOGO
+        =============================== */
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+
+            background: var(--green-light);
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 15px;
+
+            font-size: 28px;
+        }
+
+
+        /* ===============================
+           HEADINGS
+        =============================== */
+
+        h1 {
+            font-size: 28px;
+
+            margin-bottom: 8px;
+
+            color: var(--green-dark);
+
+            text-align: center;
+        }
+
+
+        .subtitle {
+            color: var(--text-gray);
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+
+            text-align: center;
+        }
+
+
+        /* ===============================
+           INPUT GROUP
+        =============================== */
+
+        .input-group {
+            margin-bottom: 18px;
+
+            position: relative;
+        }
+
+
+        .input-group label {
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 8px;
+
+            color: var(--text-dark);
+
+            font-weight: 600;
+        }
+
+
+        .input-group input {
+            width: 100%;
+
+            padding: 14px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+
+            color: var(--text-dark);
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+
+        .input-group input:focus {
+            border-color: var(--green-primary);
+
+            outline: none;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(0, 122, 61, 0.1);
+        }
+
+
+        .input-group input::placeholder {
+            color: #9CA3AF;
+        }
+
+
+        /* ===============================
+           PASSWORD EYE
+        =============================== */
+
+        .eye {
+            position: absolute;
+
+            right: 14px;
+
+            bottom: 12px;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            user-select: none;
+        }
+
+
+        /* ===============================
+           FORGOT PASSWORD
+        =============================== */
+
+        .forgot {
+            text-align: right;
+
+            font-size: 12px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .forgot a {
+            color: var(--green-primary);
+
+            text-decoration: none;
+
+            font-weight: 600;
+        }
+
+
+        /* ===============================
+           MAIN BUTTON
+        =============================== */
+
+        .btn {
+            width: 100%;
+
+            padding: 15px;
+
+            background: var(--green-primary);
+
+            border: none;
+
+            border-radius: 12px;
+
+            color: var(--white);
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .btn:hover {
+            background: var(--green-dark);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* ===============================
+           SIGNUP LINK
+        =============================== */
+
+        .signup-link {
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            color: var(--text-gray);
+        }
+
+
+        .signup-link a {
+            color: var(--green-primary);
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        /* ===============================
+           ADMIN ACCESS
+        =============================== */
+
+        .admin-access {
+            margin-top: 25px;
+
+            text-align: center;
+        }
+
+
+        .admin-access hr {
+            border: none;
+
+            border-top:
+                1px solid var(--border);
+
+            margin-bottom: 20px;
+        }
+
+
+        .admin-btn {
+            width: 100%;
+
+            padding: 14px;
+
+            background: transparent;
+
+            border:
+                1px solid var(--green-primary);
+
+            border-radius: 12px;
+
+            color: var(--green-primary);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .admin-btn:hover {
+            background: var(--green-primary);
+
+            color: var(--white);
+        }
+
+
+        .admin-access small {
+            display: block;
+
+            margin-top: 8px;
+
+            color: var(--text-gray);
+
+            font-size: 11px;
+        }
+
+
+        /* ===============================
+           ADMIN MODAL BACKGROUND
+        =============================== */
+
+        .admin-modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.55);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 1000;
+        }
+
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+
+        /* ===============================
+           ADMIN SECURITY BOX
+        =============================== */
+
+        .admin-security-box {
+            width: 100%;
+
+            max-width: 400px;
+
+            background: var(--white);
+
+            padding: 35px 30px;
+
+            border-radius: 20px;
+
+            position: relative;
+
+            animation:
+                popup 0.3s ease;
+        }
+
+
+        @keyframes popup {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(0.9)
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+            }
+
+        }
+
+
+        /* ===============================
+           CLOSE BUTTON
+        =============================== */
+
+        .close-modal {
+            position: absolute;
+
+            top: 10px;
+
+            right: 18px;
+
+            background: none;
+
+            border: none;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            color: var(--text-gray);
+        }
+
+
+        /* ===============================
+           ADMIN POPUP TEXT
+        =============================== */
+
+        .admin-security-box h2 {
+            text-align: center;
+
+            color: var(--green-dark);
+
+            margin-bottom: 8px;
+        }
+
+
+        .admin-security-box p {
+            text-align: center;
+
+            color: var(--text-gray);
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* ===============================
+           MOBILE
+        =============================== */
+
+        @media (max-width: 480px) {
+
+            .box {
+                padding: 30px 20px;
+            }
+
+
+            .admin-security-box {
+                padding: 30px 20px;
+            }
+
+
+            h1 {
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
 </head>
+
+
 <body>
+
+
+    <!-- =================================
+         CUSTOMER LOGIN
+    ================================== -->
+
     <div class="box">
-        <h1>Welcome Back ✈️</h1>
-        <p class="subtitle">Login to book your next trip</p>
+
+
+        <!-- LOGO -->
+
+        <div class="logo-icon">
+            ✈️
+        </div>
+
+
+        <!-- HEADING -->
+
+        <h1>Welcome Back</h1>
+
+        <p class="subtitle">
+            Login to manage your trips and bookings
+        </p>
+
+
+        <!-- CUSTOMER LOGIN FORM -->
 
         <form id="loginForm">
+
+
+            <!-- EMAIL -->
+
             <div class="input-group">
-                <label>📧 Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
+
+                <label for="email">
+                    📧 Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
             </div>
+
+
+            <!-- PASSWORD -->
+
             <div class="input-group">
-                <label>🔒 Password</label>
-                <input type="password" id="password" placeholder="Enter your password">
-                  <span class="eye" onclick="togglePassword()">👁️</span>
+
+                <label for="password">
+                    🔒 Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <span
+                    class="eye"
+                    id="customerEye"
+                >
+                    👁️
+                </span>
+
             </div>
-            <p class="forgot"><a href="#">Forgot Password?</a></p>
-            <button type="submit" class="btn">Login</button>
+
+
+            <!-- FORGOT PASSWORD -->
+
+            <p class="forgot">
+
+                <a href="#">
+                    Forgot Password?
+                </a>
+
+            </p>
+
+
+            <!-- CUSTOMER LOGIN BUTTON -->
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Login
+            </button>
+
+
         </form>
 
-        <p class="signup-link">Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+        <!-- SIGNUP -->
+
+        <p class="signup-link">
+
+            Don't have an account?
+
+            <a href="signup.html">
+                Sign Up
+            </a>
+
+        </p>
+
+
+        <!-- =================================
+             ADMIN ACCESS
+        ================================== -->
+
+        <div class="admin-access">
+
+            <hr>
+
+            <button
+                class="admin-btn"
+                id="adminBtn"
+                type="button"
+            >
+
+                <i class="fas fa-user-shield"></i>
+
+                Admin Access
+
+            </button>
+
+
+            <small>
+                For authorized staff only
+            </small>
+
+        </div>
+
+
     </div>
+
+
+
+    <!-- =================================
+         ADMIN ACCESS MODAL
+    ================================== -->
+
+    <div
+        class="admin-modal"
+        id="adminModal"
+    >
+
+
+        <div class="admin-security-box">
+
+
+            <!-- CLOSE -->
+
+            <button
+                class="close-modal"
+                id="closeModal"
+                type="button"
+            >
+                &times;
+            </button>
+
+
+            <!-- ADMIN HEADING -->
+
+            <h2>
+
+                <i class="fas fa-shield-halved"></i>
+
+                Admin Access
+
+            </h2>
+
+
+            <p>
+                Enter your authorized admin name and access code.
+            </p>
+
+
+            <!-- ADMIN FORM -->
+
+            <form id="adminAccessForm">
+
+
+                <!-- ADMIN NAME -->
+
+                <div class="input-group">
+
+                    <label for="adminName">
+
+                        <i class="fas fa-user"></i>
+
+                        Admin Name
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="adminName"
+                        placeholder="Enter your admin name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- ADMIN ACCESS CODE -->
+
+                <div class="input-group">
+
+                    <label for="adminCode">
+
+                        <i class="fas fa-key"></i>
+
+                        Admin Access Code
+
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="adminCode"
+                        placeholder="Enter your secret access code"
+                        required
+                    >
+
+
+                    <span
+                        class="eye"
+                        id="adminEye"
+                    >
+                        👁️
+                    </span>
+
+                </div>
+
+
+
+                <!-- ADMIN LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+
+                    <i class="fas fa-lock-open"></i>
+
+                    Access Admin Dashboard
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
 
     <script>
 
-          function togglePassword() {
-            const passInput = document.getElementById('password');
-            const eye = document.querySelector('.eye');
-            if (passInput.type === 'password') {
-                passInput.type = 'text';
-                eye.textContent = '🙈';
-            } else {
-                passInput.type = 'password';
-                eye.textContent = '👁️';
+
+        /* =================================
+           CUSTOMER PASSWORD SHOW / HIDE
+        ================================= */
+
+        const customerPassword =
+            document.getElementById('password');
+
+        const customerEye =
+            document.getElementById('customerEye');
+
+
+        customerEye.addEventListener(
+            'click',
+            function() {
+
+                if (
+                    customerPassword.type ===
+                    'password'
+                ) {
+
+                    customerPassword.type =
+                        'text';
+
+                    customerEye.textContent =
+                        '🙈';
+
+                } else {
+
+                    customerPassword.type =
+                        'password';
+
+                    customerEye.textContent =
+                        '👁️';
+
+                }
+
             }
-        }
-        document.getElementById('loginForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            if(email === '' || password === ''){
-                alert('Please fill all fields');
-                return;
+        );
+
+
+
+        /* =================================
+           CUSTOMER LOGIN
+        ================================= */
+
+        document
+            .getElementById('loginForm')
+            .addEventListener(
+                'submit',
+                function(e) {
+
+                    e.preventDefault();
+
+
+                    const email =
+                        document
+                        .getElementById('email')
+                        .value
+                        .trim();
+
+
+                    const password =
+                        document
+                        .getElementById('password')
+                        .value;
+
+
+                    if (
+                        email === '' ||
+                        password === ''
+                    ) {
+
+                        alert(
+                            'Please fill in all fields.'
+                        );
+
+                        return;
+
+                    }
+
+
+                    /*
+                       CUSTOMER LOGIN SUCCESS
+
+                       Later, your backend/database
+                       will verify the real customer.
+                    */
+
+                    alert(
+                        'Login Successful! 🎉'
+                    );
+
+
+                    /*
+                       GO TO CUSTOMER DASHBOARD
+                    */
+
+                    window.location.href =
+                        'customers.html';
+
+                }
+            );
+
+
+
+        /* =================================
+           OPEN ADMIN MODAL
+        ================================= */
+
+        const adminBtn =
+            document.getElementById('adminBtn');
+
+        const adminModal =
+            document.getElementById('adminModal');
+
+        const closeModal =
+            document.getElementById('closeModal');
+
+
+        adminBtn.addEventListener(
+            'click',
+            function() {
+
+                adminModal.classList.add(
+                    'active'
+                );
+
             }
-            alert('Login Successful! 🎉');
-            window.location.href = 'dashboard.html'; // Go to app dashboard
-        });
+        );
+
+
+
+        /* =================================
+           CLOSE ADMIN MODAL
+        ================================= */
+
+        closeModal.addEventListener(
+            'click',
+            function() {
+
+                adminModal.classList.remove(
+                    'active'
+                );
+
+            }
+        );
+
+
+
+        /* =================================
+           CLOSE WHEN CLICKING OUTSIDE BOX
+        ================================= */
+
+        adminModal.addEventListener(
+            'click',
+            function(e) {
+
+                if (
+                    e.target === adminModal
+                ) {
+
+                    adminModal.classList.remove(
+                        'active'
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================
+           ADMIN PASSWORD SHOW / HIDE
+        ================================= */
+
+        const adminCode =
+            document.getElementById('adminCode');
+
+        const adminEye =
+            document.getElementById('adminEye');
+
+
+        adminEye.addEventListener(
+            'click',
+            function() {
+
+                if (
+                    adminCode.type ===
+                    'password'
+                ) {
+
+                    adminCode.type =
+                        'text';
+
+                    adminEye.textContent =
+                        '🙈';
+
+                } else {
+
+                    adminCode.type =
+                        'password';
+
+                    adminEye.textContent =
+                        '👁️';
+
+                }
+
+            }
+        );
+
+
+
+        /* =================================
+           AUTHORIZED ADMINS
+
+           ADD AS MANY ADMIN NAMES
+           AS YOU WANT BELOW
+        ================================= */
+
+        const authorizedAdminNames = [
+
+            'Titobi',
+
+            'Benjamin',
+
+            'Admin',
+
+            'John',
+
+            'Mary'
+
+        ];
+
+
+
+        /* =================================
+           SHARED ADMIN ACCESS CODE
+
+           ALL THE ADMINS ABOVE WILL USE
+           THIS SAME ACCESS CODE
+        ================================= */
+
+        const authorizedAccessCode =
+            '12345';
+
+
+
+        /* =================================
+           ADMIN ACCESS FORM
+        ================================= */
+
+        document
+            .getElementById('adminAccessForm')
+            .addEventListener(
+                'submit',
+                function(e) {
+
+                    e.preventDefault();
+
+
+                    /* GET ADMIN NAME */
+
+                    const adminName =
+                        document
+                        .getElementById('adminName')
+                        .value
+                        .trim();
+
+
+
+                    /* GET ADMIN ACCESS CODE */
+
+                    const adminAccessCode =
+                        document
+                        .getElementById('adminCode')
+                        .value;
+
+
+
+                    /* =========================
+                       CHECK IF NAME IS INSIDE
+                       AUTHORIZED ADMIN LIST
+                    ========================= */
+
+                    const isAuthorizedAdmin =
+                        authorizedAdminNames.some(
+                            function(name) {
+
+                                return (
+                                    name.toLowerCase() ===
+                                    adminName.toLowerCase()
+                                );
+
+                            }
+                        );
+
+
+
+                    /* =========================
+                       CHECK NAME + CODE
+                    ========================= */
+
+                    if (
+
+                        isAuthorizedAdmin &&
+
+                        adminAccessCode ===
+                        authorizedAccessCode
+
+                    ) {
+
+
+                        /*
+                           ACCESS GRANTED
+                        */
+
+                        alert(
+                            'Access Granted! Welcome, ' +
+                            adminName +
+                            ' 🛡️'
+                        );
+
+
+
+                        /*
+                           SAVE ADMIN NAME
+
+                           This allows you to use
+                           the name later inside
+                           admin-dashboard.html.
+                        */
+
+                        localStorage.setItem(
+                            'adminName',
+                            adminName
+                        );
+
+
+
+                        /*
+                           GO TO ADMIN DASHBOARD
+                        */
+
+                        window.location.href =
+                            'admins.html';
+
+
+                    } else {
+
+
+                        /*
+                           ACCESS DENIED
+                        */
+
+                        alert(
+                            'Access Denied! Invalid admin name or access code.'
+                        );
+
+                    }
+
+                }
+            );
+
+
     </script>
+
+
 </body>
 </html>
