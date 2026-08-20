@@ -1,176 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Moment Continental - Customer
-    </title>
-
-    <link
-        rel="stylesheet"
-        href="customers.css"
-    >
+    <title>Moment Continental - Customer Portal</title>
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     >
 
+    <link rel="stylesheet" href="customers.css">
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      SIDEBAR
 ===================================================== -->
 
-<aside
-    class="sidebar"
-    id="sidebar"
->
-
-
-    <!-- BRAND -->
+<aside class="sidebar" id="sidebar">
 
     <div class="brand">
 
         <div class="brand-icon">
-
             <i class="fas fa-plane-departure"></i>
-
         </div>
 
-
         <div>
-
-            <h2>
-                Moment
-            </h2>
-
-            <span>
-                Continental
-            </span>
-
+            <h2>Moment</h2>
+            <span>Continental</span>
         </div>
 
     </div>
 
 
-
-    <!-- NAVIGATION -->
-
     <nav class="sidebar-nav">
 
+        <!-- TOURS -->
 
         <button
             class="nav-item active"
-            data-page="flights"
+            data-page="tours"
         >
-
-            <i class="fas fa-plane"></i>
-
-            <span>
-                Flight Ticketing
-            </span>
-
+            <i class="fas fa-kaaba"></i>
+            <span>Tours & Pilgrimage</span>
         </button>
 
 
+        <!-- FLIGHTS -->
 
         <button
             class="nav-item"
-            data-page="tours"
+            data-page="flights"
         >
-
-            <i class="fas fa-kaaba"></i>
-
-            <span>
-                Tours & Pilgrimage
-            </span>
-
+            <i class="fas fa-plane"></i>
+            <span>Flight Ticketing</span>
         </button>
 
+
+        <!-- MESSAGES -->
+
+        <button
+            class="nav-item"
+            data-page="messages"
+        >
+            <i class="fas fa-envelope"></i>
+            <span>Messages</span>
+
+            <span class="message-badge" id="messageBadge">
+                0
+            </span>
+        </button>
 
     </nav>
 
 
-
-    <!-- BOTTOM -->
+    <!-- LOGOUT -->
 
     <div class="sidebar-bottom">
-
 
         <button
             class="nav-item logout-btn"
             id="logoutBtn"
         >
-
             <i class="fas fa-right-from-bracket"></i>
-
-            <span>
-                Logout
-            </span>
-
+            <span>Logout</span>
         </button>
 
-
     </div>
-
 
 </aside>
 
 
 
 <!-- =====================================================
-     MAIN
+     MAIN CONTENT
 ===================================================== -->
 
 <main class="main">
-
 
     <!-- TOPBAR -->
 
     <header class="topbar">
 
-
         <button
             class="menu-btn"
             id="menuBtn"
         >
-
             <i class="fas fa-bars"></i>
-
         </button>
-
 
 
         <div class="topbar-title">
 
             <h2 id="pageTitle">
-                Flight Ticketing
+                Tours & Pilgrimage
             </h2>
 
             <p>
-                Moment Continental Integrated Services
+                Moment Continental Customer Portal
             </p>
 
         </div>
 
 
-
-        <!-- CUSTOMER -->
-
         <div class="customer-profile">
+
+            <div class="notification">
+
+                <i class="fas fa-bell"></i>
+
+                <span id="notificationCount">
+                    0
+                </span>
+
+            </div>
 
 
             <div class="avatar" id="customerAvatar">
@@ -180,48 +146,202 @@
 
             <div class="customer-info">
 
-                <strong id="customerDisplayName">
+                <strong id="customerName">
                     Customer
                 </strong>
 
                 <small>
-                    Traveller
+                    Customer
                 </small>
 
             </div>
 
-
         </div>
-
 
     </header>
 
 
 
-    <!-- =================================================
+    <!-- =====================================================
          CONTENT
-    ================================================= -->
+    ===================================================== -->
 
     <section class="content">
 
 
-
         <!-- =================================================
-             FLIGHTS
+             TOURS & PILGRIMAGE
         ================================================= -->
 
         <div
             class="page active-page"
-            id="flights"
+            id="tours"
         >
-
 
             <div class="page-heading">
 
                 <div>
 
                     <h1>
-                        Find Your Flight ✈️
+                        Tours & Pilgrimage
+                    </h1>
+
+                    <p>
+                        Explore our available tours and pilgrimage packages.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="package-grid">
+
+
+                <!-- ISRAEL & JORDAN -->
+
+                <div class="package-card featured-package">
+
+                    <div class="package-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+
+                    <span class="package-label">
+                        Featured Package
+                    </span>
+
+                    <h3>
+                        Israel & Jordan Sacred Tour & Pilgrimage Package
+                    </h3>
+
+                    <p>
+                        A complete 9-day faith-building journey covering
+                        Jerusalem, Mount Nebo, Petra, the Dead Sea and
+                        the Jordan River holy baptismal site.
+                    </p>
+
+                    <div class="package-meta">
+
+                        <span>
+                            <i class="fas fa-calendar"></i>
+                            9 Days
+                        </span>
+
+                        <span>
+                            <i class="fas fa-globe"></i>
+                            Israel & Jordan
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="bookTour('Israel & Jordan Sacred Tour & Pilgrimage Package')"
+                    >
+                        <i class="fas fa-calendar-check"></i>
+                        Reserve Package
+                    </button>
+
+                </div>
+
+
+
+                <!-- UMRAH -->
+
+                <div class="package-card">
+
+                    <div class="package-icon">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+
+                    <h3>
+                        Umrah Spiritual Pilgrimage
+                    </h3>
+
+                    <p>
+                        A spiritually guided Umrah journey with
+                        accommodation, transportation and pilgrimage
+                        support.
+                    </p>
+
+                    <div class="package-meta">
+
+                        <span>
+                            <i class="fas fa-mosque"></i>
+                            Saudi Arabia
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="bookTour('Umrah Spiritual Pilgrimage')"
+                    >
+                        <i class="fas fa-calendar-check"></i>
+                        Reserve Package
+                    </button>
+
+                </div>
+
+
+
+                <!-- HAJJ -->
+
+                <div class="package-card">
+
+                    <div class="package-icon">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+
+                    <h3>
+                        Hajj Pilgrimage Tour
+                    </h3>
+
+                    <p>
+                        Organized Hajj pilgrimage services for individuals
+                        and groups with travel and accommodation arrangements.
+                    </p>
+
+                    <div class="package-meta">
+
+                        <span>
+                            <i class="fas fa-kaaba"></i>
+                            Saudi Arabia
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="primary-btn"
+                        onclick="bookTour('Hajj Pilgrimage Tour')"
+                    >
+                        <i class="fas fa-calendar-check"></i>
+                        Reserve Package
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FLIGHT TICKETING
+        ================================================= -->
+
+        <div
+            class="page"
+            id="flights"
+        >
+
+            <div class="page-heading">
+
+                <div>
+
+                    <h1>
+                        Flight Ticketing
                     </h1>
 
                     <p>
@@ -233,32 +353,25 @@
             </div>
 
 
-
-            <!-- FLIGHT SEARCH -->
-
             <div class="flight-search-panel">
-
 
                 <!-- TRIP TYPE -->
 
                 <div class="flight-tabs">
 
-
                     <button
                         class="flight-tab active"
-                        data-trip="round-trip"
-                    >
-                        Round Trip
-                    </button>
-
-
-                    <button
-                        class="flight-tab"
                         data-trip="one-way"
                     >
                         One Way
                     </button>
 
+                    <button
+                        class="flight-tab"
+                        data-trip="round-trip"
+                    >
+                        Round Trip
+                    </button>
 
                     <button
                         class="flight-tab"
@@ -267,13 +380,11 @@
                         Multi City
                     </button>
 
-
                 </div>
 
 
 
                 <form id="flightSearchForm">
-
 
                     <div class="flight-form-grid">
 
@@ -286,13 +397,9 @@
                                 From
                             </label>
 
-
                             <div class="input-icon">
 
-                                <i
-                                    class="fas fa-plane-departure"
-                                ></i>
-
+                                <i class="fas fa-plane-departure"></i>
 
                                 <input
                                     type="text"
@@ -302,15 +409,12 @@
                                     required
                                 >
 
-
                             </div>
-
 
                             <div
                                 class="airport-results"
-                                id="fromResults"
+                                id="fromAirportResults"
                             ></div>
-
 
                         </div>
 
@@ -324,9 +428,7 @@
                             id="swapFlightBtn"
                             title="Swap airports"
                         >
-
                             <i class="fas fa-right-left"></i>
-
                         </button>
 
 
@@ -339,13 +441,9 @@
                                 To
                             </label>
 
-
                             <div class="input-icon">
 
-                                <i
-                                    class="fas fa-plane-arrival"
-                                ></i>
-
+                                <i class="fas fa-plane-arrival"></i>
 
                                 <input
                                     type="text"
@@ -355,15 +453,12 @@
                                     required
                                 >
 
-
                             </div>
-
 
                             <div
                                 class="airport-results"
-                                id="toResults"
+                                id="toAirportResults"
                             ></div>
-
 
                         </div>
 
@@ -377,20 +472,15 @@
                                 Departure
                             </label>
 
-
                             <div class="input-icon">
 
-                                <i
-                                    class="fas fa-calendar-days"
-                                ></i>
-
+                                <i class="fas fa-calendar"></i>
 
                                 <input
                                     type="date"
                                     id="departureDate"
                                     required
                                 >
-
 
                             </div>
 
@@ -409,19 +499,14 @@
                                 Return
                             </label>
 
-
                             <div class="input-icon">
 
-                                <i
-                                    class="fas fa-calendar-days"
-                                ></i>
-
+                                <i class="fas fa-calendar-days"></i>
 
                                 <input
                                     type="date"
                                     id="returnDate"
                                 >
-
 
                             </div>
 
@@ -431,189 +516,161 @@
 
                         <!-- TRAVELLERS -->
 
-                        <div class="form-group traveller-group">
+                        <div class="form-group">
 
                             <label>
                                 Travellers
                             </label>
 
-
-                            <button
-                                type="button"
-                                class="traveller-btn"
-                                id="travellerBtn"
-                            >
-
-                                <i class="fas fa-users"></i>
-
-
-                                <span id="travellerSummary">
-                                    1 Adult
-                                </span>
-
-
-                                <i class="fas fa-chevron-down"></i>
-
-                            </button>
-
-
-
-                            <!-- TRAVELLER POPUP -->
-
                             <div
-                                class="traveller-popup"
-                                id="travellerPopup"
+                                class="traveller-selector"
+                                id="travellerSelector"
                             >
 
+                                <button
+                                    type="button"
+                                    class="traveller-display"
+                                >
 
-                                <!-- ADULTS -->
+                                    <i class="fas fa-users"></i>
 
-                                <div class="traveller-row">
+                                    <span id="travellerSummary">
+                                        1 Adult
+                                    </span>
 
+                                    <i class="fas fa-chevron-down"></i>
 
-                                    <div>
-
-                                        <strong>
-                                            Adults
-                                        </strong>
-
-                                        <small>
-                                            12+ years
-                                        </small>
-
-                                    </div>
+                                </button>
 
 
-                                    <div class="counter">
+                                <div
+                                    class="traveller-dropdown"
+                                    id="travellerDropdown"
+                                >
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="adults"
-                                            data-action="minus"
-                                        >
-                                            −
-                                        </button>
+                                    <!-- ADULTS -->
 
+                                    <div class="traveller-row">
 
-                                        <span id="adultsCount">
-                                            1
-                                        </span>
+                                        <div>
 
+                                            <strong>
+                                                Adults
+                                            </strong>
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="adults"
-                                            data-action="plus"
-                                        >
-                                            +
-                                        </button>
+                                            <small>
+                                                12+ years
+                                            </small>
 
-                                    </div>
+                                        </div>
 
-                                </div>
+                                        <div class="counter">
 
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('adults', -1)"
+                                            >
+                                                −
+                                            </button>
 
+                                            <span id="adultCount">
+                                                1
+                                            </span>
 
-                                <!-- CHILDREN -->
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('adults', 1)"
+                                            >
+                                                +
+                                            </button>
 
-                                <div class="traveller-row">
-
-
-                                    <div>
-
-                                        <strong>
-                                            Children
-                                        </strong>
-
-                                        <small>
-                                            2–11 years
-                                        </small>
+                                        </div>
 
                                     </div>
 
 
-                                    <div class="counter">
+                                    <!-- CHILDREN -->
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="children"
-                                            data-action="minus"
-                                        >
-                                            −
-                                        </button>
+                                    <div class="traveller-row">
 
+                                        <div>
 
-                                        <span id="childrenCount">
-                                            0
-                                        </span>
+                                            <strong>
+                                                Children
+                                            </strong>
 
+                                            <small>
+                                                2–11 years
+                                            </small>
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="children"
-                                            data-action="plus"
-                                        >
-                                            +
-                                        </button>
+                                        </div>
 
-                                    </div>
+                                        <div class="counter">
 
-                                </div>
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('children', -1)"
+                                            >
+                                                −
+                                            </button>
 
+                                            <span id="childrenCount">
+                                                0
+                                            </span>
 
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('children', 1)"
+                                            >
+                                                +
+                                            </button>
 
-                                <!-- INFANTS -->
-
-                                <div class="traveller-row">
-
-
-                                    <div>
-
-                                        <strong>
-                                            Infants
-                                        </strong>
-
-                                        <small>
-                                            Under 2
-                                        </small>
+                                        </div>
 
                                     </div>
 
 
-                                    <div class="counter">
+                                    <!-- INFANTS -->
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="infants"
-                                            data-action="minus"
-                                        >
-                                            −
-                                        </button>
+                                    <div class="traveller-row">
 
+                                        <div>
 
-                                        <span id="infantsCount">
-                                            0
-                                        </span>
+                                            <strong>
+                                                Infants
+                                            </strong>
 
+                                            <small>
+                                                Under 2
+                                            </small>
 
-                                        <button
-                                            type="button"
-                                            class="counter-btn"
-                                            data-type="infants"
-                                            data-action="plus"
-                                        >
-                                            +
-                                        </button>
+                                        </div>
+
+                                        <div class="counter">
+
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('infants', -1)"
+                                            >
+                                                −
+                                            </button>
+
+                                            <span id="infantCount">
+                                                0
+                                            </span>
+
+                                            <button
+                                                type="button"
+                                                onclick="changeTraveller('infants', 1)"
+                                            >
+                                                +
+                                            </button>
+
+                                        </div>
 
                                     </div>
 
                                 </div>
-
 
                             </div>
 
@@ -629,27 +686,25 @@
                                 Cabin Class
                             </label>
 
-
                             <div class="input-icon">
 
                                 <i class="fas fa-chair"></i>
 
-
                                 <select id="cabinClass">
 
-                                    <option value="Economy">
+                                    <option value="economy">
                                         Economy
                                     </option>
 
-                                    <option value="Premium Economy">
+                                    <option value="premium">
                                         Premium Economy
                                     </option>
 
-                                    <option value="Business">
+                                    <option value="business">
                                         Business
                                     </option>
 
-                                    <option value="First Class">
+                                    <option value="first">
                                         First Class
                                     </option>
 
@@ -659,128 +714,26 @@
 
                         </div>
 
-
                     </div>
 
-
-
-                    <!-- MULTI CITY -->
-
-                    <div
-                        class="multi-city-container"
-                        id="multiCityContainer"
-                    >
-
-                        <div class="multi-city-header">
-
-                            <div>
-
-                                <h3>
-                                    Multi-City Flights
-                                </h3>
-
-                                <p>
-                                    Add multiple destinations.
-                                </p>
-
-                            </div>
-
-
-                            <button
-                                type="button"
-                                class="text-btn"
-                                id="addCityBtn"
-                            >
-
-                                <i class="fas fa-plus"></i>
-
-                                Add another city
-
-                            </button>
-
-                        </div>
-
-
-                        <div id="multiCityRows">
-
-
-                            <div class="multi-city-row">
-
-
-                                <div class="form-group">
-
-                                    <label>
-                                        From
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        placeholder="City or airport"
-                                    >
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label>
-                                        To
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        placeholder="City or airport"
-                                    >
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label>
-                                        Date
-                                    </label>
-
-                                    <input
-                                        type="date"
-                                    >
-
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- SEARCH -->
 
                     <button
                         type="submit"
                         class="search-flight-btn"
                     >
 
-                        <i
-                            class="fas fa-magnifying-glass"
-                        ></i>
+                        <i class="fas fa-magnifying-glass"></i>
 
                         Search Flights
 
                     </button>
 
-
                 </form>
-
 
             </div>
 
 
-
-            <!-- SEARCH RESULTS -->
+            <!-- RESULTS -->
 
             <div
                 class="flight-results"
@@ -796,61 +749,38 @@
                         </h2>
 
                         <p>
-                            Search for flights to see available options.
+                            Search for a flight to see available options.
                         </p>
 
                     </div>
 
                 </div>
-
-
-                <div id="flightResultsList">
-
-                    <div class="empty-results">
-
-                        <i class="fas fa-plane"></i>
-
-                        <h3>
-                            Search for a flight
-                        </h3>
-
-                        <p>
-                            Enter your departure and destination
-                            airports above.
-                        </p>
-
-                    </div>
-
-                </div>
-
 
             </div>
-
 
         </div>
 
 
 
         <!-- =================================================
-             TOURS & PILGRIMAGE
+             MESSAGES
         ================================================= -->
 
         <div
             class="page"
-            id="tours"
+            id="messages"
         >
-
 
             <div class="page-heading">
 
                 <div>
 
                     <h1>
-                        Tours & Pilgrimage 🕋
+                        Messages
                     </h1>
 
                     <p>
-                        Explore our travel and pilgrimage packages.
+                        Contact Moment Continental for enquiries and assistance.
                     </p>
 
                 </div>
@@ -858,192 +788,247 @@
             </div>
 
 
-
-            <div class="package-grid">
-
-
-                <!-- ISRAEL & JORDAN -->
-
-                <div class="package-card featured-package">
-
-                    <div class="package-icon">
-
-                        <i class="fas fa-church"></i>
-
-                    </div>
+            <div class="message-layout">
 
 
-                    <span class="package-label">
-                        Featured Package
-                    </span>
+                <!-- MESSAGE FORM -->
 
+                <div class="panel message-form-panel">
 
-                    <h3>
-                        Israel & Jordan Sacred Tour
-                        & Pilgrimage Package
-                    </h3>
+                    <div class="panel-header">
 
+                        <div>
 
-                    <p>
-                        A complete 9-day faith-building journey
-                        through Jerusalem, Mount Nebo, Petra,
-                        the Dead Sea and the Jordan River.
-                    </p>
+                            <h3>
+                                Send us a message
+                            </h3>
 
+                            <p>
+                                Our team will get back to you.
+                            </p>
 
-                    <div class="package-meta">
-
-                        <span>
-
-                            <i class="fas fa-calendar"></i>
-
-                            9 Days
-
-                        </span>
-
-
-                        <span>
-
-                            <i class="fas fa-globe"></i>
-
-                            Israel & Jordan
-
-                        </span>
+                        </div>
 
                     </div>
 
 
-                    <button
-                        class="package-btn"
-                        onclick="bookPackage('Israel & Jordan Sacred Tour & Pilgrimage Package')"
-                    >
+                    <form id="messageForm">
 
-                        Book Package
+                        <div class="form-group">
 
-                    </button>
+                            <label>
+                                Your Name
+                            </label>
 
+                            <input
+                                type="text"
+                                id="messageName"
+                                placeholder="Enter your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="messageEmail"
+                                placeholder="Enter your email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Subject
+                            </label>
+
+                            <input
+                                type="text"
+                                id="messageSubject"
+                                placeholder="What is your enquiry about?"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Message
+                            </label>
+
+                            <textarea
+                                id="messageText"
+                                rows="6"
+                                placeholder="Write your message..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="primary-btn full-btn"
+                        >
+
+                            <i class="fas fa-paper-plane"></i>
+
+                            Send Message
+
+                        </button>
+
+                    </form>
 
                 </div>
 
 
 
-                <!-- UMRAH -->
+                <!-- CONTACT INFORMATION -->
 
-                <div class="package-card">
+                <div class="panel contact-panel">
 
-                    <div class="package-icon">
+                    <div class="contact-icon">
 
-                        <i class="fas fa-kaaba"></i>
-
-                    </div>
-
-
-                    <h3>
-                        Umrah Spiritual Pilgrimage
-                    </h3>
-
-
-                    <p>
-                        A spiritually guided Umrah journey
-                        with accommodation, transportation
-                        and pilgrimage support.
-                    </p>
-
-
-                    <div class="package-meta">
-
-                        <span>
-
-                            <i class="fas fa-mosque"></i>
-
-                            Saudi Arabia
-
-                        </span>
-
-                    </div>
-
-
-                    <button
-                        class="package-btn"
-                        onclick="bookPackage('Umrah Spiritual Pilgrimage')"
-                    >
-
-                        Book Package
-
-                    </button>
-
-
-                </div>
-
-
-
-                <!-- HAJJ -->
-
-                <div class="package-card">
-
-                    <div class="package-icon">
-
-                        <i class="fas fa-mosque"></i>
+                        <i class="fas fa-headset"></i>
 
                     </div>
 
 
                     <h3>
-                        Hajj Pilgrimage Tour
+                        Need help?
                     </h3>
 
 
                     <p>
-                        Organized Hajj pilgrimage services
-                        for individuals and groups with travel
-                        and accommodation arrangements.
+                        Our team is available to assist you with
+                        reservations, flights, tours and pilgrimage packages.
                     </p>
 
 
-                    <div class="package-meta">
+                    <div class="contact-item">
 
-                        <span>
+                        <i class="fas fa-envelope"></i>
 
-                            <i class="fas fa-kaaba"></i>
+                        <div>
 
-                            Saudi Arabia
+                            <strong>
+                                Email
+                            </strong>
 
-                        </span>
+                            <span>
+                               ✉️  momentcontinental@yahoo.com
+                               <br>
+                                  🌐  momentcontinental.com
+                            </span>
+
+                        </div>
 
                     </div>
 
 
-                    <button
-                        class="package-btn"
-                        onclick="bookPackage('Hajj Pilgrimage Tour')"
-                    >
+                       <div class="contact-item">
 
-                        Book Package
+                        <i class="fas fa-envelope"></i>
 
-                    </button>
+                        <div>
 
+                            <strong>
+                                Location
+                            </strong>
+
+                            <span>
+                               📍 5N close, opposite RCCG Jesus Heritage off 7up Road, Oluyole Ibadan, Oyo State
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="contact-item">
+
+                        <i class="fas fa-phone"></i>
+
+                        <div>
+
+                            <strong>
+                                Phone
+                            </strong>
+
+                            <span>
+                                📱  08035128503, 08129720808, 09113772795
+                            </span>
+
+                        </div>
+
+                    </div>
 
                 </div>
-
 
             </div>
-
 
         </div>
 
-
     </section>
-
 
 </main>
 
 
 
-<script
-    src="customers.js"
-></script>
+<!-- =====================================================
+     SUCCESS MODAL
+===================================================== -->
 
+<div
+    class="modal"
+    id="messageSuccessModal"
+>
+
+    <div class="modal-content success-modal">
+
+        <div class="success-icon">
+
+            <i class="fas fa-check"></i>
+
+        </div>
+
+
+        <h2>
+            Message Sent!
+        </h2>
+
+
+        <p>
+            Thank you for contacting Moment Continental.
+            Our team will get back to you shortly.
+        </p>
+
+
+        <button
+            class="primary-btn"
+            onclick="closeMessageSuccess()"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script src="customers.js"></script>
 
 </body>
-
 </html>

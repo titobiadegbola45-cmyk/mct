@@ -1,190 +1,249 @@
 /* =====================================================
-   MOMENT CONTINENTAL
-   CUSTOMER DASHBOARD
+   MOMENT CONTINENTAL - CUSTOMER JS
 ===================================================== */
-
-
-/* =====================================================
-   CUSTOMER INFORMATION
-===================================================== */
-
-const customerName =
-    localStorage.getItem("customerName") || "Customer";
-
-
-const customerDisplayName =
-    document.getElementById("customerDisplayName");
-
-
-const customerAvatar =
-    document.getElementById("customerAvatar");
-
-
-if (customerDisplayName) {
-
-    customerDisplayName.textContent =
-        customerName;
-
-}
-
-
-if (customerAvatar) {
-
-    customerAvatar.textContent =
-        customerName
-            .charAt(0)
-            .toUpperCase();
-
-}
-
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-const sidebar =
-    document.getElementById("sidebar");
-
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-
-if (menuBtn) {
-
-    menuBtn.addEventListener(
-        "click",
-        function () {
-
-            sidebar.classList.toggle("show");
-
-        }
-    );
-
-}
 
 
 /* =====================================================
    PAGE NAVIGATION
 ===================================================== */
 
-const navItems =
-    document.querySelectorAll(
-        ".nav-item[data-page]"
-    );
+const navItems = document.querySelectorAll(".nav-item[data-page]");
+const pages = document.querySelectorAll(".page");
 
-
-const pages =
-    document.querySelectorAll(
-        ".page"
-    );
-
-
-const pageTitle =
-    document.getElementById(
-        "pageTitle"
-    );
+const pageTitles = {
+    tours: "Tours & Pilgrimage",
+    flights: "Flight Ticketing",
+    messages: "Messages"
+};
 
 
 function showPage(pageName) {
 
-
-    pages.forEach(function (page) {
-
-        page.classList.remove(
-            "active-page"
-        );
-
+    pages.forEach(page => {
+        page.classList.remove("active-page");
     });
 
+    navItems.forEach(item => {
+        item.classList.remove("active");
+    });
 
-    const selectedPage =
-        document.getElementById(
-            pageName
-        );
-
+    const selectedPage = document.getElementById(pageName);
+    const selectedNav = document.querySelector(
+        `.nav-item[data-page="${pageName}"]`
+    );
 
     if (selectedPage) {
-
-        selectedPage.classList.add(
-            "active-page"
-        );
-
+        selectedPage.classList.add("active-page");
     }
 
+    if (selectedNav) {
+        selectedNav.classList.add("active");
+    }
 
-    navItems.forEach(function (item) {
-
-        item.classList.remove(
-            "active"
-        );
-
-
-        if (
-            item.dataset.page ===
-            pageName
-        ) {
-
-            item.classList.add(
-                "active"
-            );
-
-        }
-
-    });
-
-
-    const titles = {
-
-        flights: "Flight Ticketing",
-
-        tours: "Tours & Pilgrimage"
-
-    };
-
+    const pageTitle = document.getElementById("pageTitle");
 
     if (pageTitle) {
-
-        pageTitle.textContent =
-            titles[pageName];
-
+        pageTitle.textContent = pageTitles[pageName] || "Moment Continental";
     }
 
+    /* Close mobile sidebar */
 
-    if (window.innerWidth <= 850) {
-
-        sidebar.classList.remove(
-            "show"
-        );
-
-    }
-
+    document.getElementById("sidebar")?.classList.remove("open");
 }
 
 
-navItems.forEach(function (item) {
+navItems.forEach(item => {
 
-    item.addEventListener(
-        "click",
-        function () {
+    item.addEventListener("click", () => {
 
-            showPage(
-                this.dataset.page
-            );
+        const pageName = item.dataset.page;
 
-        }
-    );
+        showPage(pageName);
+
+    });
 
 });
 
 
 /* =====================================================
-   AIRPORT DATABASE
+   MOBILE MENU
 ===================================================== */
+
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+
+menuBtn?.addEventListener("click", () => {
+
+    sidebar.classList.toggle("open");
+
+});
+
+
+/* =====================================================
+   CUSTOMER INFORMATION
+===================================================== */
+
+function loadCustomerInfo() {
+
+    /*
+       Later the backend will provide this information.
+
+       For now we check localStorage so the page
+       can already display a customer's name.
+    */
+
+    const customer = JSON.parse(
+        localStorage.getItem("customer")
+    );
+
+    if (!customer) {
+        return;
+    }
+
+    const nameElement = document.getElementById("customerName");
+    const avatarElement = document.getElementById("customerAvatar");
+
+    if (nameElement && customer.name) {
+        nameElement.textContent = customer.name;
+    }
+
+    if (avatarElement && customer.name) {
+        avatarElement.textContent =
+            customer.name.charAt(0).toUpperCase();
+    }
+
+}
+
+loadCustomerInfo();
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document.getElementById("logoutBtn")?.addEventListener(
+    "click",
+    () => {
+
+        const confirmLogout = confirm(
+            "Are you sure you want to logout?"
+        );
+
+        if (!confirmLogout) {
+            return;
+        }
+
+        /*
+           Remove customer session information.
+           Later this will also be handled by the backend.
+        */
+
+        localStorage.removeItem("customer");
+        localStorage.removeItem("customerToken");
+
+        window.location.href = "login.html";
+
+    }
+);
+
+
+/* =====================================================
+   TOUR RESERVATION
+===================================================== */
+
+function bookTour(packageName) {
+
+    alert(
+        `You selected:\n\n${packageName}\n\n` +
+        `Your reservation request will be handled shortly.`
+    );
+
+    /*
+       BACKEND CONNECTION WILL GO HERE LATER.
+
+       Example:
+
+       fetch("https://your-backend/api/reservations", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({
+               package: packageName
+           })
+       });
+    */
+
+}
+
+
+/* =====================================================
+   FLIGHT TRIP TYPE
+===================================================== */
+
+const flightTabs = document.querySelectorAll(".flight-tab");
+
+const returnDateGroup =
+    document.getElementById("returnDateGroup");
+
+flightTabs.forEach(tab => {
+
+    tab.addEventListener("click", () => {
+
+        flightTabs.forEach(item => {
+            item.classList.remove("active");
+        });
+
+        tab.classList.add("active");
+
+        const tripType = tab.dataset.trip;
+
+        if (tripType === "one-way") {
+
+            returnDateGroup.style.display = "block";
+
+            document.getElementById("returnDate").required = false;
+
+        }
+
+        else if (tripType === "round-trip") {
+
+            returnDateGroup.style.display = "block";
+
+            document.getElementById("returnDate").required = true;
+
+        }
+
+        else if (tripType === "multi-city") {
+
+            returnDateGroup.style.display = "none";
+
+            document.getElementById("returnDate").required = false;
+
+        }
+
+    });
+
+});
+
+
+/* =====================================================
+   AIRPORT DATA
+===================================================== */
+
+/*
+   Temporary airport data for the frontend.
+
+   IMPORTANT:
+   This is NOT meant to contain every airport in the world.
+
+   When we start the backend, we'll replace this with
+   a proper airport database/API.
+*/
 
 const airports = [
 
-    /* ================= NIGERIA ================= */
+    /* Nigeria */
 
     {
         code: "LOS",
@@ -222,13 +281,6 @@ const airports = [
     },
 
     {
-        code: "BNI",
-        name: "Benin Airport",
-        city: "Benin City",
-        country: "Nigeria"
-    },
-
-    {
         code: "ILR",
         name: "Ilorin International Airport",
         city: "Ilorin",
@@ -242,8 +294,15 @@ const airports = [
         country: "Nigeria"
     },
 
+    {
+        code: "BEN",
+        name: "Benin Airport",
+        city: "Benin City",
+        country: "Nigeria"
+    },
 
-    /* ================= UNITED KINGDOM ================= */
+
+    /* United Kingdom */
 
     {
         code: "LHR",
@@ -260,35 +319,14 @@ const airports = [
     },
 
     {
-        code: "STN",
-        name: "London Stansted Airport",
-        city: "London",
-        country: "United Kingdom"
-    },
-
-    {
-        code: "LTN",
-        name: "London Luton Airport",
-        city: "London",
-        country: "United Kingdom"
-    },
-
-    {
         code: "MAN",
         name: "Manchester Airport",
         city: "Manchester",
         country: "United Kingdom"
     },
 
-    {
-        code: "BHX",
-        name: "Birmingham Airport",
-        city: "Birmingham",
-        country: "United Kingdom"
-    },
 
-
-    /* ================= UAE ================= */
+    /* UAE */
 
     {
         code: "DXB",
@@ -304,15 +342,8 @@ const airports = [
         country: "United Arab Emirates"
     },
 
-    {
-        code: "SHJ",
-        name: "Sharjah International Airport",
-        city: "Sharjah",
-        country: "United Arab Emirates"
-    },
 
-
-    /* ================= TURKEY ================= */
+    /* Turkey */
 
     {
         code: "IST",
@@ -328,34 +359,13 @@ const airports = [
         country: "Turkey"
     },
 
-    {
-        code: "ESB",
-        name: "Esenboğa International Airport",
-        city: "Ankara",
-        country: "Turkey"
-    },
 
-    {
-        code: "AYT",
-        name: "Antalya Airport",
-        city: "Antalya",
-        country: "Turkey"
-    },
-
-
-    /* ================= USA ================= */
+    /* USA */
 
     {
         code: "JFK",
         name: "John F. Kennedy International Airport",
         city: "New York",
-        country: "United States"
-    },
-
-    {
-        code: "EWR",
-        name: "Newark Liberty International Airport",
-        city: "Newark",
         country: "United States"
     },
 
@@ -366,29 +376,8 @@ const airports = [
         country: "United States"
     },
 
-    {
-        code: "ORD",
-        name: "O'Hare International Airport",
-        city: "Chicago",
-        country: "United States"
-    },
 
-    {
-        code: "MIA",
-        name: "Miami International Airport",
-        city: "Miami",
-        country: "United States"
-    },
-
-    {
-        code: "ATL",
-        name: "Hartsfield-Jackson Atlanta International Airport",
-        city: "Atlanta",
-        country: "United States"
-    },
-
-
-    /* ================= CANADA ================= */
+    /* Canada */
 
     {
         code: "YYZ",
@@ -404,15 +393,8 @@ const airports = [
         country: "Canada"
     },
 
-    {
-        code: "YUL",
-        name: "Montréal-Pierre Elliott Trudeau International Airport",
-        city: "Montreal",
-        country: "Canada"
-    },
 
-
-    /* ================= FRANCE ================= */
+    /* France */
 
     {
         code: "CDG",
@@ -421,39 +403,8 @@ const airports = [
         country: "France"
     },
 
-    {
-        code: "ORY",
-        name: "Paris Orly Airport",
-        city: "Paris",
-        country: "France"
-    },
 
-
-    /* ================= GERMANY ================= */
-
-    {
-        code: "FRA",
-        name: "Frankfurt Airport",
-        city: "Frankfurt",
-        country: "Germany"
-    },
-
-    {
-        code: "MUC",
-        name: "Munich Airport",
-        city: "Munich",
-        country: "Germany"
-    },
-
-    {
-        code: "BER",
-        name: "Berlin Brandenburg Airport",
-        city: "Berlin",
-        country: "Germany"
-    },
-
-
-    /* ================= SAUDI ARABIA ================= */
+    /* Saudi Arabia */
 
     {
         code: "JED",
@@ -474,90 +425,6 @@ const airports = [
         name: "Prince Mohammad bin Abdulaziz International Airport",
         city: "Medina",
         country: "Saudi Arabia"
-    },
-
-
-    /* ================= SOUTH AFRICA ================= */
-
-    {
-        code: "JNB",
-        name: "O.R. Tambo International Airport",
-        city: "Johannesburg",
-        country: "South Africa"
-    },
-
-    {
-        code: "CPT",
-        name: "Cape Town International Airport",
-        city: "Cape Town",
-        country: "South Africa"
-    },
-
-
-    /* ================= GHANA ================= */
-
-    {
-        code: "ACC",
-        name: "Kotoka International Airport",
-        city: "Accra",
-        country: "Ghana"
-    },
-
-
-    /* ================= KENYA ================= */
-
-    {
-        code: "NBO",
-        name: "Jomo Kenyatta International Airport",
-        city: "Nairobi",
-        country: "Kenya"
-    },
-
-
-    /* ================= EGYPT ================= */
-
-    {
-        code: "CAI",
-        name: "Cairo International Airport",
-        city: "Cairo",
-        country: "Egypt"
-    },
-
-
-    /* ================= QATAR ================= */
-
-    {
-        code: "DOH",
-        name: "Hamad International Airport",
-        city: "Doha",
-        country: "Qatar"
-    },
-
-
-    /* ================= NETHERLANDS ================= */
-
-    {
-        code: "AMS",
-        name: "Amsterdam Airport Schiphol",
-        city: "Amsterdam",
-        country: "Netherlands"
-    },
-
-
-    /* ================= SPAIN ================= */
-
-    {
-        code: "MAD",
-        name: "Adolfo Suárez Madrid-Barajas Airport",
-        city: "Madrid",
-        country: "Spain"
-    },
-
-    {
-        code: "BCN",
-        name: "Barcelona-El Prat Airport",
-        city: "Barcelona",
-        country: "Spain"
     }
 
 ];
@@ -567,1244 +434,610 @@ const airports = [
    AIRPORT SEARCH
 ===================================================== */
 
-function setupAirportSearch(
-    inputId,
-    resultsId
-) {
+function setupAirportSearch(inputId, resultsId) {
+
+    const input = document.getElementById(inputId);
+    const results = document.getElementById(resultsId);
+
+    if (!input || !results) {
+        return;
+    }
+
+    input.addEventListener("input", () => {
+
+        const query = input.value
+            .trim()
+            .toLowerCase();
+
+        results.innerHTML = "";
+
+        if (!query) {
+
+            results.style.display = "none";
+
+            return;
+        }
 
 
-    const input =
-        document.getElementById(
-            inputId
-        );
+        const matches = airports.filter(airport => {
+
+            return (
+                airport.code.toLowerCase().startsWith(query) ||
+                airport.name.toLowerCase().includes(query) ||
+                airport.city.toLowerCase().includes(query) ||
+                airport.country.toLowerCase().includes(query)
+            );
+
+        });
 
 
-    const results =
-        document.getElementById(
-            resultsId
-        );
+        if (matches.length === 0) {
 
-
-    if (!input || !results) return;
-
-
-    input.addEventListener(
-        "input",
-        function () {
-
-
-            const search =
-                this.value
-                    .toLowerCase()
-                    .trim();
-
-
-            results.innerHTML = "";
-
-
-            if (!search) {
-
-                results.classList.remove(
-                    "show"
-                );
-
-                return;
-
-            }
-
-
-            const matches =
-                airports.filter(
-                    function (airport) {
-
-                        return (
-
-                            airport.code
-                                .toLowerCase()
-                                .includes(search)
-
-                            ||
-
-                            airport.name
-                                .toLowerCase()
-                                .includes(search)
-
-                            ||
-
-                            airport.city
-                                .toLowerCase()
-                                .includes(search)
-
-                            ||
-
-                            airport.country
-                                .toLowerCase()
-                                .includes(search)
-
-                        );
-
-                    }
-                );
-
-
-            if (!matches.length) {
-
-                results.innerHTML = `
-
-                    <div class="airport-option">
-
-                        <div class="airport-info">
-
-                            <strong>
-                                No airport found
-                            </strong>
-
-                            <span>
-                                Try an airport code, city or airport name.
-                            </span>
-
-                        </div>
-
+            results.innerHTML = `
+                <div class="airport-result">
+                    <div class="airport-name">
+                        No airport found
                     </div>
 
-                `;
+                    <span class="airport-location">
+                        Try another airport, city or country
+                    </span>
+                </div>
+            `;
 
-                results.classList.add(
-                    "show"
-                );
+            results.style.display = "block";
 
-                return;
-
-            }
-
-
-            matches.forEach(
-                function (airport) {
+            return;
+        }
 
 
-                    const option =
-                        document.createElement(
-                            "div"
-                        );
+        matches.forEach(airport => {
+
+            const item = document.createElement("div");
+
+            item.className = "airport-result";
+
+            item.innerHTML = `
+                <div>
+                    <span class="airport-code">
+                        ${airport.code}
+                    </span>
+
+                    <span class="airport-name">
+                        ${airport.name}
+                    </span>
+                </div>
+
+                <span class="airport-location">
+                    ${airport.city}, ${airport.country}
+                </span>
+            `;
 
 
-                    option.className =
-                        "airport-option";
+            item.addEventListener("click", () => {
+
+                input.value =
+                    `${airport.code} - ${airport.name}, ${airport.city}`;
+
+                results.style.display = "none";
+
+            });
 
 
-                    option.innerHTML = `
+            results.appendChild(item);
 
-                        <div class="airport-code">
-                            ${airport.code}
-                        </div>
-
-                        <div class="airport-info">
-
-                            <strong>
-                                ${airport.name}
-                            </strong>
-
-                            <span>
-                                ${airport.city},
-                                ${airport.country}
-                            </span>
-
-                        </div>
-
-                    `;
+        });
 
 
-                    option.addEventListener(
-                        "click",
-                        function () {
+        results.style.display = "block";
 
-                            input.value =
-                                `${airport.code} - ${airport.name}, ${airport.city}`;
-
-                            input.dataset.airportCode =
-                                airport.code;
+    });
 
 
-                            results.classList.remove(
-                                "show"
-                            );
+    /* Hide results when clicking elsewhere */
 
-                        }
-                    );
+    document.addEventListener("click", event => {
 
+        if (
+            !input.contains(event.target) &&
+            !results.contains(event.target)
+        ) {
 
-                    results.appendChild(
-                        option
-                    );
-
-                }
-            );
-
-
-            results.classList.add(
-                "show"
-            );
+            results.style.display = "none";
 
         }
-    );
 
-
-    /* SHOW RESULTS ON FOCUS */
-
-    input.addEventListener(
-        "focus",
-        function () {
-
-            if (this.value.trim()) {
-
-                this.dispatchEvent(
-                    new Event("input")
-                );
-
-            }
-
-        }
-    );
+    });
 
 }
 
-
-/* FROM */
 
 setupAirportSearch(
     "flightFrom",
-    "fromResults"
+    "fromAirportResults"
 );
-
-
-/* TO */
 
 setupAirportSearch(
     "flightTo",
-    "toResults"
+    "toAirportResults"
 );
-
-
-/* =====================================================
-   CLOSE AIRPORT DROPDOWNS
-===================================================== */
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-
-        if (
-            !event.target.closest(
-                ".airport-group"
-            )
-        ) {
-
-            document
-                .querySelectorAll(
-                    ".airport-results"
-                )
-                .forEach(
-                    function (box) {
-
-                        box.classList.remove(
-                            "show"
-                        );
-
-                    }
-                );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   TRIP TYPE
-===================================================== */
-
-const flightTabs =
-    document.querySelectorAll(
-        ".flight-tab"
-    );
-
-
-const returnDateGroup =
-    document.getElementById(
-        "returnDateGroup"
-    );
-
-
-const multiCityContainer =
-    document.getElementById(
-        "multiCityContainer"
-    );
-
-
-flightTabs.forEach(
-    function (tab) {
-
-
-        tab.addEventListener(
-            "click",
-            function () {
-
-
-                flightTabs.forEach(
-                    function (item) {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-
-                this.classList.add(
-                    "active"
-                );
-
-
-                const tripType =
-                    this.dataset.trip;
-
-
-                if (
-                    tripType ===
-                    "one-way"
-                ) {
-
-                    returnDateGroup.style.display =
-                        "block";
-
-                    document.getElementById(
-                        "returnDate"
-                    ).required = false;
-
-                    multiCityContainer.classList.remove(
-                        "show"
-                    );
-
-                }
-
-
-                else if (
-                    tripType ===
-                    "round-trip"
-                ) {
-
-                    returnDateGroup.style.display =
-                        "block";
-
-                    document.getElementById(
-                        "returnDate"
-                    ).required = true;
-
-                    multiCityContainer.classList.remove(
-                        "show"
-                    );
-
-                }
-
-
-                else if (
-                    tripType ===
-                    "multi-city"
-                ) {
-
-                    returnDateGroup.style.display =
-                        "none";
-
-                    document.getElementById(
-                        "returnDate"
-                    ).required = false;
-
-                    multiCityContainer.classList.add(
-                        "show"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-/* =====================================================
-   DATE MINIMUM
-===================================================== */
-
-const today =
-    new Date()
-        .toISOString()
-        .split("T")[0];
-
-
-const departureDate =
-    document.getElementById(
-        "departureDate"
-    );
-
-
-const returnDate =
-    document.getElementById(
-        "returnDate"
-    );
-
-
-if (departureDate) {
-
-    departureDate.min =
-        today;
-
-}
-
-
-if (returnDate) {
-
-    returnDate.min =
-        today;
-
-}
-
-
-if (departureDate) {
-
-    departureDate.addEventListener(
-        "change",
-        function () {
-
-            returnDate.min =
-                this.value;
-
-        }
-    );
-
-}
 
 
 /* =====================================================
    SWAP AIRPORTS
 ===================================================== */
 
-const swapBtn =
-    document.getElementById(
-        "swapFlightBtn"
-    );
-
-
-if (swapBtn) {
-
-    swapBtn.addEventListener(
-        "click",
-        function () {
-
-
-            const from =
-                document.getElementById(
-                    "flightFrom"
-                );
-
-
-            const to =
-                document.getElementById(
-                    "flightTo"
-                );
-
-
-            const temp =
-                from.value;
-
-
-            from.value =
-                to.value;
-
-
-            to.value =
-                temp;
-
-
-            const tempCode =
-                from.dataset.airportCode;
-
-
-            from.dataset.airportCode =
-                to.dataset.airportCode;
-
-
-            to.dataset.airportCode =
-                tempCode;
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   TRAVELLER COUNTERS
-===================================================== */
-
-let travellers = {
-
-    adults: 1,
-
-    children: 0,
-
-    infants: 0
-
-};
-
-
-const travellerBtn =
-    document.getElementById(
-        "travellerBtn"
-    );
-
-
-const travellerPopup =
-    document.getElementById(
-        "travellerPopup"
-    );
-
-
-if (travellerBtn) {
-
-    travellerBtn.addEventListener(
-        "click",
-        function (event) {
-
-            event.stopPropagation();
-
-            travellerPopup.classList.toggle(
-                "show"
-            );
-
-        }
-    );
-
-}
-
-
-/* COUNTER BUTTONS */
-
-document
-    .querySelectorAll(
-        ".counter-btn"
-    )
-    .forEach(
-        function (button) {
-
-
-            button.addEventListener(
-                "click",
-                function () {
-
-
-                    const type =
-                        this.dataset.type;
-
-
-                    const action =
-                        this.dataset.action;
-
-
-                    if (
-                        action ===
-                        "plus"
-                    ) {
-
-                        travellers[type]++;
-
-                    }
-
-
-                    if (
-                        action ===
-                        "minus"
-                    ) {
-
-
-                        /*
-                           Adults must always
-                           have at least one.
-                        */
-
-                        if (
-                            type ===
-                            "adults" &&
-                            travellers[type] <= 1
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        if (
-                            travellers[type] > 0
-                        ) {
-
-                            travellers[type]--;
-
-                        }
-
-                    }
-
-
-                    updateTravellerDisplay();
-
-                }
-            );
-
-        }
-    );
-
-
-function updateTravellerDisplay() {
-
-
-    document.getElementById(
-        "adultsCount"
-    ).textContent =
-        travellers.adults;
-
-
-    document.getElementById(
-        "childrenCount"
-    ).textContent =
-        travellers.children;
-
-
-    document.getElementById(
-        "infantsCount"
-    ).textContent =
-        travellers.infants;
-
-
-    const total =
-        travellers.adults +
-        travellers.children +
-        travellers.infants;
-
-
-    let summary =
-        `${total} Traveller`;
-
-
-    if (total !== 1) {
-
-        summary += "s";
-
-    }
-
-
-    travellerSummary.textContent =
-        summary;
-
-}
-
-
-/* CLOSE TRAVELLER POPUP */
-
-document.addEventListener(
+document.getElementById("swapFlightBtn")?.addEventListener(
     "click",
-    function (event) {
+    () => {
 
+        const from =
+            document.getElementById("flightFrom");
 
-        if (
-            !event.target.closest(
-                ".traveller-group"
-            )
-        ) {
+        const to =
+            document.getElementById("flightTo");
 
-            travellerPopup.classList.remove(
-                "show"
-            );
+        const temporary = from.value;
 
-        }
+        from.value = to.value;
+
+        to.value = temporary;
 
     }
 );
 
 
 /* =====================================================
-   MULTI-CITY ADD
+   TRAVELLERS
 ===================================================== */
 
-const addCityBtn =
-    document.getElementById(
-        "addCityBtn"
-    );
+const travellerCounts = {
+    adults: 1,
+    children: 0,
+    infants: 0
+};
 
 
-const multiCityRows =
-    document.getElementById(
-        "multiCityRows"
-    );
+const travellerSelector =
+    document.getElementById("travellerSelector");
+
+const travellerDropdown =
+    document.getElementById("travellerDropdown");
+
+const travellerDisplay =
+    document.querySelector(".traveller-display");
 
 
-let cityRowCount = 1;
+travellerDisplay?.addEventListener("click", event => {
+
+    event.stopPropagation();
+
+    travellerDropdown.classList.toggle("show");
+
+});
 
 
-if (addCityBtn) {
+document.addEventListener("click", event => {
 
-    addCityBtn.addEventListener(
-        "click",
-        function () {
+    if (
+        travellerDropdown &&
+        !travellerSelector.contains(event.target)
+    ) {
 
+        travellerDropdown.classList.remove("show");
 
-            cityRowCount++;
+    }
 
-
-            const row =
-                document.createElement(
-                    "div"
-                );
+});
 
 
-            row.className =
-                "multi-city-row";
+function changeTraveller(type, amount) {
+
+    let newValue =
+        travellerCounts[type] + amount;
 
 
-            row.innerHTML = `
+    /* Adults cannot go below 1 */
 
-                <div class="form-group">
+    if (type === "adults") {
 
-                    <label>
-                        From
-                    </label>
+        newValue = Math.max(1, newValue);
 
-                    <input
-                        type="text"
-                        placeholder="City or airport"
-                    >
+    }
 
-                </div>
+    else {
 
+        newValue = Math.max(0, newValue);
 
-                <div class="form-group">
-
-                    <label>
-                        To
-                    </label>
-
-                    <input
-                        type="text"
-                        placeholder="City or airport"
-                    >
-
-                </div>
+    }
 
 
-                <div class="form-group">
+    /* Infants cannot exceed adults */
 
-                    <label>
-                        Date
-                    </label>
+    if (
+        type === "infants" &&
+        newValue > travellerCounts.adults
+    ) {
 
-                    <input
-                        type="date"
-                        min="${today}"
-                    >
+        newValue = travellerCounts.adults;
 
-                </div>
-
-            `;
+    }
 
 
-            multiCityRows.appendChild(
-                row
-            );
+    travellerCounts[type] = newValue;
 
-        }
-    );
+
+    document.getElementById("adultCount").textContent =
+        travellerCounts.adults;
+
+    document.getElementById("childrenCount").textContent =
+        travellerCounts.children;
+
+    document.getElementById("infantCount").textContent =
+        travellerCounts.infants;
+
+
+    updateTravellerSummary();
 
 }
+
+
+function updateTravellerSummary() {
+
+    const adults = travellerCounts.adults;
+    const children = travellerCounts.children;
+    const infants = travellerCounts.infants;
+
+    let summary = `${adults} Adult${adults !== 1 ? "s" : ""}`;
+
+
+    if (children > 0) {
+
+        summary +=
+            `, ${children} Child${children !== 1 ? "ren" : ""}`;
+
+    }
+
+
+    if (infants > 0) {
+
+        summary +=
+            `, ${infants} Infant${infants !== 1 ? "s" : ""}`;
+
+    }
+
+
+    document.getElementById("travellerSummary")
+        .textContent = summary;
+
+}
+
+
+/* =====================================================
+   DATE VALIDATION
+===================================================== */
+
+const today = new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+const departureDate =
+    document.getElementById("departureDate");
+
+const returnDate =
+    document.getElementById("returnDate");
+
+
+if (departureDate) {
+
+    departureDate.min = today;
+
+}
+
+
+departureDate?.addEventListener("change", () => {
+
+    if (returnDate) {
+
+        returnDate.min = departureDate.value;
+
+        if (
+            returnDate.value &&
+            returnDate.value < departureDate.value
+        ) {
+
+            returnDate.value = "";
+
+        }
+
+    }
+
+});
 
 
 /* =====================================================
    FLIGHT SEARCH
 ===================================================== */
 
-const flightSearchForm =
-    document.getElementById(
-        "flightSearchForm"
-    );
+document.getElementById("flightSearchForm")
+    ?.addEventListener("submit", event => {
+
+        event.preventDefault();
 
 
-if (flightSearchForm) {
+        const from =
+            document.getElementById("flightFrom").value;
 
-    flightSearchForm.addEventListener(
-        "submit",
-        function (event) {
+        const to =
+            document.getElementById("flightTo").value;
 
-
-            event.preventDefault();
-
-
-            const from =
-                document.getElementById(
-                    "flightFrom"
-                );
+        const departure =
+            document.getElementById("departureDate").value;
 
 
-            const to =
-                document.getElementById(
-                    "flightTo"
-                );
+        if (!from || !to || !departure) {
 
+            alert("Please complete your flight search.");
 
-            const departure =
-                departureDate.value;
-
-
-            const returnValue =
-                returnDate.value;
-
-
-            const cabin =
-                document.getElementById(
-                    "cabinClass"
-                ).value;
-
-
-            if (
-                !from.value ||
-                !to.value ||
-                !departure
-            ) {
-
-                alert(
-                    "Please enter your departure, destination and departure date."
-                );
-
-                return;
-
-            }
-
-
-            const activeTrip =
-                document.querySelector(
-                    ".flight-tab.active"
-                ).dataset.trip;
-
-
-            if (
-                activeTrip ===
-                "round-trip" &&
-                !returnValue
-            ) {
-
-                alert(
-                    "Please select a return date."
-                );
-
-                return;
-
-            }
-
-
-            showFlightResults(
-                from.value,
-                to.value,
-                departure,
-                returnValue,
-                cabin
-            );
+            return;
 
         }
-    );
-
-}
 
 
-/* =====================================================
-   FLIGHT RESULTS
-===================================================== */
+        if (
+            from.toLowerCase() ===
+            to.toLowerCase()
+        ) {
 
-function showFlightResults(
-    from,
-    to,
-    departure,
-    returnDate,
-    cabin
-) {
+            alert(
+                "Departure and arrival airports cannot be the same."
+            );
 
+            return;
 
-    const results =
-        document.getElementById(
-            "flightResultsList"
-        );
+        }
 
 
-    results.innerHTML = `
+        const results =
+            document.getElementById("flightResults");
 
-        <div class="flight-card">
+
+        results.innerHTML = `
+
+            <div class="results-heading">
+
+                <div>
+
+                    <h2>
+                        Flight Search
+                    </h2>
+
+                    <p>
+                        Searching available flights from
+                        <strong>${from}</strong>
+                        to
+                        <strong>${to}</strong>.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-            <div class="airline">
+            <div class="flight-card">
 
-                <div class="airline-logo">
+                <div class="airline">
 
-                    <i class="fas fa-plane"></i>
+                    <div class="airline-logo">
+                        <i class="fas fa-plane"></i>
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Moment Continental
+                        </strong>
+
+                        <small>
+                            MC 101
+                        </small>
+
+                    </div>
 
                 </div>
 
 
-                <div>
+                <div class="flight-time">
 
                     <strong>
-                        Moment Continental Airways
+                        08:00
                     </strong>
 
+                    <span>
+                        ${extractAirportCode(from)}
+                    </span>
+
+                </div>
+
+
+                <div class="flight-route">
+
+                    <span>
+                        Direct
+                    </span>
+
+                    <div class="route-line">
+
+                        <i class="fas fa-circle"></i>
+
+                        <span></span>
+
+                        <i class="fas fa-plane"></i>
+
+                        <span></span>
+
+                        <i class="fas fa-circle"></i>
+
+                    </div>
+
                     <small>
-                        MC 102
+                        Available
                     </small>
 
                 </div>
 
-            </div>
 
-
-
-            <div class="flight-time">
-
-                <strong>
-                    08:00
-                </strong>
-
-                <span>
-                    ${getAirportCode(from)}
-                </span>
-
-            </div>
-
-
-
-            <div class="flight-route">
-
-                <span>
-                    1h 10m
-                </span>
-
-
-                <div class="route-line">
-
-                    <i class="fas fa-circle"></i>
-
-                    <span></span>
-
-                    <i class="fas fa-plane"></i>
-
-                    <span></span>
-
-                    <i class="fas fa-circle"></i>
-
-                </div>
-
-
-                <small>
-                    Direct
-                </small>
-
-            </div>
-
-
-
-            <div class="flight-time">
-
-                <strong>
-                    09:10
-                </strong>
-
-                <span>
-                    ${getAirportCode(to)}
-                </span>
-
-            </div>
-
-
-
-            <div class="flight-price">
-
-                <strong>
-                    ₦185,000
-                </strong>
-
-                <small>
-                    ${cabin}
-                </small>
-
-
-                <button
-                    onclick="selectFlight(
-                        'Moment Continental Airways',
-                        'MC 102',
-                        '₦185,000'
-                    )"
-                >
-
-                    Select
-
-                </button>
-
-            </div>
-
-
-        </div>
-
-
-        <div class="flight-card">
-
-
-            <div class="airline">
-
-                <div class="airline-logo">
-
-                    <i class="fas fa-plane"></i>
-
-                </div>
-
-
-                <div>
+                <div class="flight-time">
 
                     <strong>
-                        Continental Air
+                        12:30
+                    </strong>
+
+                    <span>
+                        ${extractAirportCode(to)}
+                    </span>
+
+                </div>
+
+
+                <div class="flight-price">
+
+                    <strong>
+                        ₦185,000
                     </strong>
 
                     <small>
-                        CA 405
+                        per traveller
                     </small>
 
-                </div>
-
-            </div>
-
-
-
-            <div class="flight-time">
-
-                <strong>
-                    12:30
-                </strong>
-
-                <span>
-                    ${getAirportCode(from)}
-                </span>
-
-            </div>
-
-
-
-            <div class="flight-route">
-
-                <span>
-                    1h 05m
-                </span>
-
-
-                <div class="route-line">
-
-                    <i class="fas fa-circle"></i>
-
-                    <span></span>
-
-                    <i class="fas fa-plane"></i>
-
-                    <span></span>
-
-                    <i class="fas fa-circle"></i>
+                    <button
+                        onclick="selectFlight()"
+                    >
+                        Select
+                    </button>
 
                 </div>
 
-
-                <small>
-                    Direct
-                </small>
-
             </div>
+        `;
+
+    });
 
 
+function extractAirportCode(value) {
 
-            <div class="flight-time">
+    if (value.includes(" - ")) {
 
-                <strong>
-                    13:35
-                </strong>
-
-                <span>
-                    ${getAirportCode(to)}
-                </span>
-
-            </div>
-
-
-
-            <div class="flight-price">
-
-                <strong>
-                    ₦210,000
-                </strong>
-
-                <small>
-                    ${cabin}
-                </small>
-
-
-                <button
-                    onclick="selectFlight(
-                        'Continental Air',
-                        'CA 405',
-                        '₦210,000'
-                    )"
-                >
-
-                    Select
-
-                </button>
-
-            </div>
-
-
-        </div>
-
-    `;
-
-
-}
-
-
-/* GET AIRPORT CODE */
-
-function getAirportCode(
-    value
-) {
-
-
-    const match =
-        airports.find(
-            function (airport) {
-
-                return value
-                    .startsWith(
-                        airport.code
-                    );
-
-            }
-        );
-
-
-    if (match) {
-
-        return match.code;
+        return value
+            .split(" - ")[0]
+            .trim();
 
     }
 
-
-    return value
-        .substring(0, 3)
-        .toUpperCase();
+    return value.substring(0, 3).toUpperCase();
 
 }
 
 
-/* =====================================================
-   SELECT FLIGHT
-===================================================== */
-
-function selectFlight(
-    airline,
-    flightNumber,
-    price
-) {
-
+function selectFlight() {
 
     alert(
-
-        `Flight Selected ✈️
-
-Airline:
-${airline}
-
-Flight:
-${flightNumber}
-
-Price:
-${price}
-
-Your booking can now continue to passenger details.`
-
+        "Flight selected successfully. " +
+        "Booking connection will be added with the backend."
     );
 
 }
 
 
 /* =====================================================
-   PACKAGE BOOKING
+   CUSTOMER MESSAGE
 ===================================================== */
 
-function bookPackage(
-    packageName
-) {
+document.getElementById("messageForm")
+    ?.addEventListener("submit", event => {
+
+        event.preventDefault();
 
 
-    alert(
+        const name =
+            document.getElementById("messageName").value.trim();
 
-        `Package Selected 🕋
+        const email =
+            document.getElementById("messageEmail").value.trim();
 
-${packageName}
+        const subject =
+            document.getElementById("messageSubject").value.trim();
 
-Your booking process will continue to the reservation details.`
-
-    );
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-const logoutBtn =
-    document.getElementById(
-        "logoutBtn"
-    );
+        const message =
+            document.getElementById("messageText").value.trim();
 
 
-if (logoutBtn) {
+        if (!name || !email || !subject || !message) {
 
-    logoutBtn.addEventListener(
-        "click",
-        function () {
+            alert("Please complete all message fields.");
 
-
-            const confirmLogout =
-                confirm(
-                    "Are you sure you want to log out?"
-                );
-
-
-            if (!confirmLogout) {
-
-                return;
-
-            }
-
-
-            localStorage.removeItem(
-                "customerName"
-            );
-
-
-            window.location.href =
-                "login.html";
+            return;
 
         }
-    );
+
+
+        /*
+           FOR NOW:
+
+           We only show the success message.
+
+           WHEN WE START BACKEND:
+
+           This exact section will become:
+
+           fetch("/api/messages", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+               body: JSON.stringify({
+                   name,
+                   email,
+                   subject,
+                   message
+               })
+           });
+
+           Then MySQL will store it and the
+           Admin Messages page will retrieve it.
+        */
+
+
+        document
+            .getElementById("messageSuccessModal")
+            .classList.add("show");
+
+
+        document
+            .getElementById("messageForm")
+            .reset();
+
+    });
+
+
+/* =====================================================
+   CLOSE SUCCESS MODAL
+===================================================== */
+
+function closeMessageSuccess() {
+
+    document
+        .getElementById("messageSuccessModal")
+        .classList.remove("show");
 
 }
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+showPage("tours");
+
+updateTravellerSummary();
